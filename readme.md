@@ -2,6 +2,20 @@
 
 A group of dotfiles for my daily development
 
+## Requeriments
+
+### macOS
+
+- Brew
+
+## Steps
+
+### Get chezmoi and install this config
+
+```bash
+sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
+```
+
 ## What's installing?
 
 ### Tools
