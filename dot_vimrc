@@ -144,11 +144,6 @@ if has('termguicolors')
   set termguicolors
 endif
 
-if has("unix")
-  source ~/.nvimrc
-  source ~/.ovimrc
-endif
-
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -244,6 +239,9 @@ map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 
 if has("nvim")
+  " Custom neovim file
+  source ~/.nvimrc
+
   " NvimTreeToggle settings
   lua require("nvim-tree-config")
   lua require("lualine-config")
@@ -266,6 +264,9 @@ if has("nvim")
   " Zen mode
   nmap <leader>z :ZenMode<cr>
 else
+  " Custom original vim file
+  source ~/.ovimrc
+
   " NERDTree settings
   " Nerd show hidden files
   let NERDTreeShowHidden = 1

@@ -1,0 +1,26 @@
+set guifont=CodeNewRomanNerdFontCompleteM-:h18
+"set guifont=JetBrainsMonoNerdFontCompleteM-Regular:h18
+"set guifont=FiraCodeNerdFontCompleteM-Retina:h18
+
+" You can change the following between dark or light
+set background=light
+
+" Theme: OneHalfLight (Default | Light theme)
+colorscheme onehalflight
+
+" Theme: OneDark (Dark theme)
+" let g:onedark_config = { 'style': 'cool' }
+" colorscheme onedark
+
+" Theme: Nightfly (Dark Theme)
+" colorscheme nightfly
+
+" Replace the theme of vim bar (lualine) 
+lua <<END
+require('lualine').setup {
+  options = { theme = 'onelight' }
+}
+END
+
+" Share clipboard with system (Mac)
+set clipboard=unnamed
