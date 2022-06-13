@@ -145,12 +145,8 @@ if has('termguicolors')
 endif
 
 if has("unix")
-  let s:uname = system("uname")
-  if s:uname == "Darwin\n"
-    source ~/.mvimrc
-  elseif s:uname == "Linux\n"
-    source ~/.lvimrc
-  endif
+  source ~/.nvimrc
+  source ~/.ovimrc
 endif
 
 " This makes vim act like all other editors, buffers can
