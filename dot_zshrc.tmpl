@@ -111,15 +111,8 @@ function zsh_brew_install {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     printf "${GREEN} 📦 Installing/Updating Brew...\n${NOCOLOR}"
   fi
-  printf "${GREEN} 📦 Installing/Updating Exa, Zplug, Tmux, Bat and Ripgrep...\n${NOCOLOR}"
-  brew install exa
-  brew install zplug
-  brew install tmux
-  brew install ripgrep
-  brew install bat
-  brew install the_silver_searcher
-  printf "${GREEN} 📦 Installing/Updating Alacritty...\n${NOCOLOR}"
-  brew install --cask alacritty
+  printf "${GREEN} 📦 Installing brew packages and casks...\n${NOCOLOR}"
+  brew bundle
 }
 
 function zshinstall_all_macos {
