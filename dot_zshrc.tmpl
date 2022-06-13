@@ -1,0 +1,324 @@
+GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
+
+function zsh_nvm_install {
+  printf "${GREEN} 📦 Installing/Updating NVM...\n${NOCOLOR}"
+  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+}
+
+function zsh_omz_install {
+  printf "${GREEN} 📦 Installing oh-my-zsh...\n${NOCOLOR}"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+{{ if (eq .chezmoi.os "linux") }}
+ZSH_LATEST_RIPGREP=$(curl -Ls https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep 'tag_name' | cut -d'"' -f4)
+ZSH_LATEST_BAT=$(curl -Ls https://api.github.com/repos/sharkdp/bat/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
+ZSH_LATEST_EXA=$(curl -Ls https://api.github.com/repos/ogham/exa/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
+ZSH_LATEST_GH=$(curl -Ls https://api.github.com/repos/cli/cli/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
+
+function zsh_ag_install {
+  printf "${GREEN} 📦 Installing Ag search...\n${NOCOLOR}"
+  sudo apt install silversearcher-ag
+}
+
+function zsh_wget_install {
+  printf "${GREEN} 📦 Installing wget...\n${NOCOLOR}"
+  sudo apt install wget
+}
+
+function zsh_gh_install {
+  printf "${GREEN} 📦 Installing/Updating GH...\n${NOCOLOR}"
+  local GH_PATH=$HOME/githubcli.deb
+  wget -O $GH_PATH https://github.com/cli/cli/releases/download/v${ZSH_LATEST_GH}/gh_${ZSH_LATEST_GH}_linux_amd64.deb
+  sudo dpkg -i $GH_PATH
+  rm $GH_PATH
+}
+
+function zsh_alacritty_install {
+  printf "${GREEN} 📦 Installing Alacritty...\n${NOCOLOR}"
+  sudo add-apt-repository ppa:aslatter/ppa
+  sudo apt install alacritty
+}
+
+function zsh_tmux_install {
+  printf "${GREEN} 📦 Installing tmux...\n${NOCOLOR}"
+  sudo apt install tmux
+}
+
+function zsh_ripgrep_install {
+  printf "${GREEN} 📦 Installing/Updating Ripgrep...\n${NOCOLOR}"
+  local RIPGREP_PATH=$HOME/ripgrep.deb
+  wget -O $RIPGREP_PATH https://github.com/BurntSushi/ripgrep/releases/download/${ZSH_LATEST_RIPGREP}/ripgrep_${ZSH_LATEST_RIPGREP}_amd64.deb
+  sudo dpkg -i $RIPGREP_PATH
+  rm $RIPGREP_PATH
+}
+
+function zsh_bat_install {
+  printf "${GREEN} 📦 Installing/Updating Bat...\n${NOCOLOR}"
+  local BAT_PATH=$HOME/bat.deb
+  wget -O $BAT_PATH https://github.com/sharkdp/bat/releases/download/v${ZSH_LATEST_BAT}/bat_${ZSH_LATEST_BAT}_amd64.deb
+  sudo dpkg -i $BAT_PATH
+  rm $BAT_PATH
+}
+
+function zsh_exa_install {
+  printf "${GREEN} 📦 Installing/Updating Exa...\n${NOCOLOR}"
+  local EXA_PATH=$HOME/exa.zip
+  wget -O $EXA_PATH https://github.com/ogham/exa/releases/download/v${ZSH_LATEST_EXA}/exa-linux-x86_64-v${ZSH_LATEST_EXA}.zip
+  unzip $EXA_PATH -d $HOME/exa_tmp_folder
+  cp $HOME/exa_tmp_folder/bin/exa $HOME/.local/bin
+  rm $EXA_PATH
+  rm -rf $HOME/exa_tmp_folder
+}
+
+function zsh_install_zplug {
+  # Zplug
+  printf "${GREEN} 📦 Installing zplug...\n${NOCOLOR}"
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+}
+
+function zsh_install_fzf {
+  printf "${GREEN} 📦 Installing fzf...\n${NOCOLOR}"
+  $HOME/.fzf/install --all
+}
+
+function zshinstall_all {
+  # Unzip: Required for exa
+  if [ -z $commands[unzip] ]; then sudo apt install unzip; else printf "${GREEN} ✅ Unzip is installed\n${NOCOLOR}"; fi
+  zsh_install_zplug
+  zsh_install_fzf
+  zsh_wget_install
+  zsh_nvm_install
+  zsh_ripgrep_install
+  zsh_gh_install
+  zsh_bat_install
+  zsh_exa_install
+  zsh_tmux_install
+  zsh_omz_install
+  zsh_ag_install
+  # Refresh shell
+  printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
+  source $HOME/.zshrc
+}
+
+alias zshinstall=zshinstall_all
+
+{{ else if (eq .chezmoi.os "darwin") }}
+
+function zsh_brew_install {
+  if [ -z $(command -v brew) ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    printf "${GREEN} 📦 Installing/Updating Brew...\n${NOCOLOR}"
+  fi
+  printf "${GREEN} 📦 Installing/Updating Exa, Zplug, Tmux, Bat and Ripgrep...\n${NOCOLOR}"
+  brew install exa
+  brew install zplug
+  brew install tmux
+  brew install ripgrep
+  brew install bat
+  brew install the_silver_searcher
+  printf "${GREEN} 📦 Installing/Updating Alacritty...\n${NOCOLOR}"
+  brew install --cask alacritty
+}
+
+function zshinstall_all_macos {
+  printf "${GREEN} 📦 Installing zplug packages...\n${NOCOLOR}"
+  zsh_brew_install &
+  wait
+  source $HOME/.zshrc &
+  wait
+  zplug install
+  zsh_nvm_install
+  # Refresh shell
+  printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
+  source $HOME/.zshrc
+}
+
+function zshupdate_all_macos {
+  brew update
+  zsh_brew_install
+  printf "${GREEN} 📦 Updating zplug packages...\n${NOCOLOR}"
+  zplug update
+  zsh_nvm_install
+  # Refresh shell
+  printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
+  source $HOME/.zshrc
+}
+
+alias zshupdate=zshupdate_all_macos
+alias zshinstall=zshinstall_all_macos
+{{ end }}
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Locales
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+# Path (Cargo is for alacritty)
+export PATH=$HOME/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+# Used By NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export BAT_THEME="OneHalfLight"
+export BAT_THEME="Dracula"
+# Used by tmux
+export TERM="xterm-256color"
+# FZF default search engine (requires ripgrep)
+export FZF_COMPLETION_TRIGGER=",,"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=inline --border --margin=1 --padding=1"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Update zsh auto-fetch
+export UPDATE_ZSH_DAYS=7
+
+EDITOR=vim
+
+# ZSH Vi Mode cursor
+function zvm_config {
+  ZVM_CURSOR_STYLE_ENABLED=false
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
+}
+
+{{ if (eq .chezmoi.os "linux") }}
+plugins=(colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm yarn tmux ssh-agent)
+# zsh => ssh autoload, should be before sourcing ohmyzsh
+zstyle :omz:plugins:ssh-agent identities id_ed25519
+{{ else if (eq .chezmoi.os "darwin") }}
+# Composer
+export COMPOSER_MEMORY_LIMIT=-1
+export PATH=$HOME/.jetbrains:$PATH
+export PATH=$HOME/.composer/vendor/bin:$PATH
+
+plugins=(colored-man-pages brew gh git docker docker-compose jsontools ruby rbenv npm nvm yarn tmux)
+
+{{ end }}
+
+source $ZSH/oh-my-zsh.sh
+
+# cht.sh completion
+# Install (and create file) with curl https://cht.sh/:cht.sh > "$HOME/bin/cht.sh"
+# and then chmod +x "$HOME/bin/cht.sh"
+# Create a file in ~/.zsh.d/_cht
+fpath=(~/.zsh.d/ $fpath)
+
+
+function npm_ci_install {
+    npm ci
+    touch ./node_modules/.metadata_never_index
+}
+
+{{ if (eq .chezmoi.os "darwin") }}
+alias mzshconfig="mvim ~/.zshrc"
+alias mvimconfig="mvim ~/.vimrc"
+alias mp10kconfig="mvim ~/.p10k.zsh"
+alias mtmuxconfig="mvim ~/.tmux.conf"
+alias brew-all="brew services list"
+alias brew-start="brew services start"
+alias brew-stop="brew services stop"
+
+function npm_yarn_install {
+    if [ -f yarn.lock ]; then
+        yarn install $@
+    else
+        npm install $@
+    fi
+    touch ./node_modules/.metadata_never_index
+}
+
+function npm_yarn_remove {
+    if [ -f yarn.lock ]; then
+        yarn remove $@
+    else
+        npm uninstall $@
+    fi
+    touch ./node_modules/.metadata_never_index
+}
+
+function npm_yarn_add {
+    if [ -f yarn.lock ]; then
+        yarn add $@
+    else
+        npm install $@ --save
+    fi
+    touch ./node_modules/.metadata_never_index
+}
+
+alias hci=npm_ci_install
+alias hinstall=npm_yarn_install
+alias hadd=npm_yarn_add
+alias hremove=npm_yarn_remove
+{{ end }}
+
+alias hc="exa -l -a --icons --git --octal-permissions"
+alias hdoc="cht.sh"
+# Aliases
+alias zshconfig="vim ~/.zshrc"
+alias vimconfig="vim ~/.vimrc"
+alias p10kconfig="vim ~/.p10k.zsh"
+alias tmuxconfig="vim ~/.tmux.conf"
+alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
+alias cup="composer outdated --outdated --direct"
+alias yup="yarn upgrade-interactive --latest"
+alias zr="source ~/.zshrc"
+# Bat aliases for different theme
+alias batl="bat --theme=GitHub"
+alias batd="bat --theme=Dracula"
+# Use fzf + Bat
+alias fzfbl="fzf --preview 'bat --theme=OneHalfLight --style=numbers --color=always --line-range :500 {}'"
+alias fzfbd="fzf --preview 'bat --theme=OneHalfDark --style=numbers --color=always --line-range :500 {}'"
+
+{{ if (eq .chezmoi.os "linux") }}
+alias pbcopy="clip.exe"
+alias pbpaste="powershell.exe -command 'Get-Clipboard' | head -n -1"
+{{ end }}
+
+# Zplug section
+{{ if (eq .chezmoi.os "linux") }}
+export ZPLUG_HOME=$HOME/.zplug
+{{ else if (eq .chezmoi.os "darwin") }}
+export ZPLUG_HOME=$(brew --prefix)/opt/zplug
+{{ end }}
+if [ -f $ZPLUG_HOME/init.zsh ]; then
+  source $ZPLUG_HOME/init.zsh
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplug "lukechilds/zsh-better-npm-completion", defer:2
+  zplug "romkatv/powerlevel10k", as:theme, depth:1
+  zplug "zsh-users/zsh-autosuggestions"
+  zplug "jeffreytse/zsh-vi-mode"
+  {{ if (eq .chezmoi.os "darwin") }}
+  zplug "DarrinTisdale/zsh-aliases-exa"
+  {{ else if (eq .chezmoi.os "linux") }}
+  if [ -z $commands[exa] ]; then zsh_exa_install; else zplug "DarrinTisdale/zsh-aliases-exa"; fi
+  {{ end }}
+fi
+
+zplug load
+
+{{ if (eq .chezmoi.os "darwin") }}
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+{{ end }}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# FZF
+function init_plugins_to_avoid_conflicts {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
+zvm_after_init_commands+=(init_plugins_to_avoid_conflicts)
+
+# Personal commands for different companies
+[ -f ~/.personal.zsh ] && source ~/.personal.zsh

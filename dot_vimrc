@@ -1,0 +1,352 @@
+if has("nvim")
+  let g:plug_home = stdpath('data') . '/plugged'
+endif
+
+" VimPlug
+call plug#begin()
+
+Plug 'APZelos/blamer.nvim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'digitaltoad/vim-pug'
+Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'jiangmiao/auto-pairs'
+Plug 'jxnblk/vim-mdx-js'
+Plug 'kevinoid/vim-jsonc'
+Plug 'kshenoy/vim-signature'
+Plug 'liuchengxu/vim-which-key'
+Plug 'machakann/vim-highlightedyank'
+Plug 'mhinz/vim-signify'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'preservim/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Themes
+Plug 'sainnhe/sonokai'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
+if has('nvim')
+  " Telescope
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  " Lualine bar + icons
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  " Better function of themes
+  Plug 'folke/lsp-colors.nvim'
+  " File sidebar
+  Plug 'kyazdani42/nvim-tree.lua', { 'commit': 'd8bf1ad' }
+  " Syntax enhancer
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  " Zen mode
+  Plug 'folke/zen-mode.nvim'
+  " OneDark Theme
+  Plug 'navarasu/onedark.nvim'
+else
+  Plug 'jparise/vim-graphql'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'pangloss/vim-javascript'
+  Plug 'peitalin/vim-jsx-typescript'
+  " NERDTree file sidebar
+  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Icons for NERDTree
+  Plug 'ryanoasis/vim-devicons'
+  " FZF, file and text search
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  " Airline Bar + Themes
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+endif
+
+call plug#end()
+
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif
+
+" Imports "{{{
+" ---------------------------------------------------------------------
+if has("gui_running")
+  " Gvim
+  if has("gui_gtk2") || has("gui_gtk3")
+    " Linux GUI
+  elseif has("gui_win32")
+    " Win32/64 GVim
+  elseif has("gui_macvim")
+    set macligatures
+  else
+    echo "Unknown GUI system!!!!"
+  endif
+else
+  " Terminal vim
+endif
+"}}}
+
+
+filetype plugin indent on
+set autoread                    "Reload files changed outside vim
+set encoding=UTF-8
+set expandtab
+set guioptions-=L
+set guioptions-=R
+set guioptions-=l
+set guioptions-=r
+set guioptions=
+set laststatus=2                "Necesary for Vim Lightline Bar
+set linespace=2
+set number relativenumber
+set shiftwidth=2
+set tabstop=2
+set nocompatible
+set autoindent
+set smarttab
+set ai
+set si
+set nowrap
+set path+=**
+set wildignore+=*/node_modules/*
+
+if !exists('g:syntax_on')
+	syntax enable
+endif
+if exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
+endif
+
+" Add asterisks in block comments
+set formatoptions+=r
+
+" incremental substitution (neovim)
+if has('nvim')
+  set inccommand=split
+endif
+
+" For color schemes
+if has('termguicolors')
+  hi LineNr ctermbg=NONE guibg=NONE
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    source ~/.mvimrc
+  elseif s:uname == "Linux\n"
+    source ~/.lvimrc
+  endif
+endif
+
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
+" Quick save
+nmap <leader>w :w!<cr>
+
+" Open terminal
+nmap <leader>t :term<cr>
+nmap <leader>tv :vert term<cr>
+
+" Source Vim configuration file and install plugins
+nnoremap <silent><leader>1 :source ~/.vimrc<CR>
+
+" COC - Autocompletion
+" " Remap keys for gotos
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Prettier: Command
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Format for different languages
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)"
+nmap <leader>p  :Prettier<cr>
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Split mapping
+set splitbelow
+set splitright
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+
+" Double jj for Esc
+imap jj <Esc>
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
+
+if has("nvim")
+  " NvimTreeToggle settings
+  lua require("nvim-tree-config")
+  lua require("lualine-config")
+  lua require("telescope-config")
+  lua require("zen-mode").setup()
+  lua require("nvim-treesitter").setup()
+  nnoremap <leader>nn :NvimTreeToggle<CR>
+  nnoremap <leader>nr :NvimTreeRefresh<CR>
+  nnoremap <leader>nf :NvimTreeFindFile<CR>
+
+  " Telescope config
+  " Search files
+  nmap <C-p> :Telescope find_files hidden=true<cr>
+  " Search text in files
+  nmap <C-o> :Telescope live_grep<cr>
+  " Search text in current file
+  nmap <leader>f :Telescope current_buffer_fuzzy_find<cr>
+  " Search commands
+  nmap <leader>C :Telescope commands<cr>
+  " Zen mode
+  nmap <leader>z :ZenMode<cr>
+else
+  " NERDTree settings
+  " Nerd show hidden files
+  let NERDTreeShowHidden = 1
+
+  map <leader>nn :NERDTreeToggle<cr>
+  map <leader>nr :NERDTreeRefreshRoot<cr>
+  map <leader>nf :NERDTreeFind<cr>
+
+  " Fzf config
+  " Search files
+  map <C-p> :Files<cr>
+  " Search text in all files
+  map <C-o> :Ag<cr>
+  " Search in file
+  map <Leader>f :BLines<cr>
+  " Search in marks
+  nmap <Leader>m :Marks<CR>
+  " Search in all commands
+  nmap <Leader>C :Commands<CR>
+  " Open Git in browser
+  map <Leader>gb :GBrowse<cr>
+
+  " Airline bar config
+  let g:airline_powerline_fonts=1
+  let g:airline#extensions#tabline#formatter='unique_tail_improved'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_buffers = 0
+endif
+
+" JSX - TSX support
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+
+" Helps with remembering commands
+nnoremap <silent> <leader> :WhichKey '\'<CR>
+vnoremap <silent> <leader> :WhichKeyVisual '\'<CR>
+
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+let g:rg_derive_root='true'
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+""""""""" Colorscheme config
+let g:vim_jsx_pretty_colorful_config = 1
+
+hi tsxTagName guifg=#59ACE5
+hi tsxComponentName guifg=#59ACE5
+" dark blue
+hi tsxCloseString guifg=#2974a1
+hi tsxCloseTag guifg=#2974a1
+hi tsxAttributeBraces guifg=#2974a1
+hi tsxEqual guifg=#2974a1
+hi tsxCloseTagName guifg=#2974a1
+hi tsxCloseComponentName guifg=#2974a1
+" green
+hi tsxAttrib guifg=#1BD1C1
+
+hi xmlEndTag guifg=#2974a1
+" hi tsxCloseString guifg=#2974a1
+hi tsxCloseString guifg=#15608f
+hi htmlTag guifg=#2974a1
+hi htmlEndTag guifg=#2974a1
+hi htmlTagName guifg=#59ACE5
+hi tsxAttrib guifg=#1BD1C1
+
+" light-grey
+hi tsxTypeBraces guifg=#999999
+" dark-grey
+hi tsxTypes guifg=#666666
+
+hi ReactState guifg=#C176A7
+hi ReactProps guifg=#D19A66
+hi ApolloGraphQL guifg=#CB886B
+hi Events ctermfg=204 guifg=#56B6C2
+hi ReduxKeywords ctermfg=204 guifg=#C678DD
+hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
+hi WebBrowser ctermfg=204 guifg=#56B6C2
+hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66

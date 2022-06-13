@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+sudo apt install ripgrep
+sudo apt install tmux
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+brew install --cask alacritty
+brew install bat
+brew install exa
+brew install ripgrep
+brew install the_silver_searcher
+brew install tmux
+brew install zplug
+{{ end -}}
