@@ -159,6 +159,11 @@ export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+{{ if (eq .chezmoi.os "darwin") }}
+{{ if (eq .chezmoi.arch "arm64") }}
+export PATH=/opt/homebrew/bin:$PATH
+{{ end }}
+{{ end }}
 # Used By NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
