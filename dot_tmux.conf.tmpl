@@ -4,7 +4,7 @@ set-option -g prefix C-Space
 bind-key C-Space send-prefix
 
 {{ if eq .chezmoi.os "darwin" }}
-set-option -g default-shell /bin/zsh
+set-option -g default-shell "/bin/zsh"
 {{ end }}
 
 # Set automatic renumber of windows
