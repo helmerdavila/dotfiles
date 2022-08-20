@@ -111,6 +111,14 @@
       "commands": ["actions.find"]
     },
     {
+      "before": ["<leader>", "b"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.listFromAllFiles"]
+    },
+    {
       "before": ["<leader>", "c"],
       "commands": ["workbench.action.showCommands"]
     },
