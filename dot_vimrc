@@ -254,13 +254,15 @@ if has("nvim")
 
   " Telescope config
   " Search files
-  nmap <C-p> :Telescope find_files hidden=true<cr>
+  nmap <leader>o :Telescope find_files hidden=true<cr>
   " Search text in files
-  nmap <C-o> :Telescope live_grep<cr>
+  nmap <leader>p :Telescope live_grep<cr>
   " Search text in current file
   nmap <leader>f :Telescope current_buffer_fuzzy_find<cr>
   " Search commands
-  nmap <leader>C :Telescope commands<cr>
+  nmap <leader>a :Telescope commands<cr>
+  " Search marks
+  nmap <leader>m :Telescope marks<cr>
   " Zen mode
   nmap <leader>z :ZenMode<cr>
 else
@@ -277,15 +279,15 @@ else
 
   " Fzf config
   " Search files
-  map <C-p> :Files<cr>
+  map <leader>o :Files<cr>
   " Search text in all files
-  map <C-o> :Ag<cr>
+  map <leader>p :Ag<cr>
   " Search in file
   map <Leader>f :BLines<cr>
   " Search in marks
-  nmap <Leader>m :Marks<CR>
+  nmap <Leader>m :Marks<cr>
   " Search in all commands
-  nmap <Leader>C :Commands<CR>
+  nmap <Leader>a :Commands<cr>
   " Open Git in browser
   map <Leader>gb :GBrowse<cr>
 

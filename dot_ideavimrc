@@ -15,18 +15,27 @@ let g:argtextobj_pairs="[:],(:),<:>"
 set showmode
 set so=5
 set incsearch
-set nu
 set relativenumber
 
-:map <leader>p <Action>(ReformatCode)
+""" NERDTree
 :map <leader>nn :NERDTreeToggle<cr>
 :map <leader>nf :NERDTreeFind<cr>
 :map <leader>nr :NERDTreeRefreshRoot<cr>
+""" Editor Actions
+:map <leader>r <Action>(ReformatCode)
+:map <leader>z <Action>(TogglePresentationMode)
+:map <leader>o <Action>(GotoFile)
+:map <leader>a <Action>(GotoAction)
+:map <leader>p <Action>(FindInPath)
+:map <leader>b <Action>(ToggleBookmark)
+:map <leader>m <Action>(ShowBookmarks)
+:map <leader>f <Action>(Find)
+:map <leader>w :w<cr>
+:map <leader>tc :tabclose<cr>
+imap jj <Esc>
+""" Movement
 :map <C-j> <C-W>j
 :map <C-k> <C-W>k
 :map <C-h> <C-W>h
 :map <C-l> <C-W>l
-:map <leader>w :w<cr>
-:map <leader>tc :tabclose<cr>
-imap jj <Esc>
 

@@ -1,0 +1,171 @@
+{
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "junstyle.php-cs-fixer"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.codeLens": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.cursorSmoothCaretAnimation": true,
+  // "editor.fontFamily": "'JetBrainsMono Nerd Font Mono',Menlo, Consolas, 'Courier New', monospace",
+  // "editor.fontFamily": "'MesloLGM Nerd Font Mono', 'Courier New'",
+  // "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Menlo', Consolas",
+  // "editor.fontFamily": "'FiraCode NF', 'Courier New'",
+  // "editor.fontFamily": "'CaskaydiaCove Nerd Font Mono',Menlo, Monaco, 'Courier New', monospace",
+  // "editor.fontFamily": "'Operator Mono SSm Lig',Menlo, Monaco, 'Courier New', monospace",
+  // "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  // Windows
+  // "editor.fontFamily": "'MonoLisa Medium', Consolas, 'Courier New', monospace",
+  // Mac
+  "editor.fontFamily": "'MonoLisa Helmer', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  // "editor.fontSize": 20,
+  "editor.fontSize": 17,
+  "editor.formatOnSave": true,
+  "editor.lineHeight": 30,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.smoothScrolling": true,
+  "editor.tabSize": 2,
+  "editor.unicodeHighlight.allowedLocales": {
+    "fr": true
+  },
+  "emmet.includeLanguages": {
+    "erb": "html",
+    "ruby": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "files.associations": {
+    "*.module": "php"
+  },
+  "git.autofetch": true,
+  "intelephense.environment.phpVersion": "8.0",
+  "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+  "php-cs-fixer.lastDownload": 1660972374508,
+  "security.workspace.trust.untrustedFiles": "open",
+  "settingsSync.ignoredExtensions": ["bungcip.better-toml"],
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "erb": "html",
+    "html.erb": "html"
+  },
+  "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono',Menlo, Monaco, 'Courier New', monospace",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": ["<Esc>"],
+      "before": ["j", "j"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.files.saveWithoutFormatting"]
+    },
+    {
+      "before": ["<leader>", "o"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["actions.find"]
+    },
+    {
+      "before": ["<leader>", "c"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.navigateUp"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.navigateDown"]
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.navigateLeft"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.navigateRight"]
+    },
+    {
+      "before": ["<leader>", "t", "c"],
+      "commands": [":tabclose"]
+    },
+    {
+      "after": ["F", "<space>", "x", "f", "<space>", "x"],
+      "before": ["d", "s", "<space>"]
+    }
+  ],
+  "vim.surround": true,
+  "vim.useSystemClipboard": true,
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "window.autoDetectColorScheme": true,
+  "window.commandCenter": true,
+  "window.nativeTabs": false,
+  "window.titleBarStyle": "custom",
+  "workbench.colorTheme": "βui - Solarized Light",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.list.smoothScrolling": true,
+  "workbench.preferredDarkColorTheme": "Moonlight",
+  "workbench.preferredLightColorTheme": "βui - Solarized Light",
+  "workbench.startupEditor": "none",
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideTabs": false
+}
