@@ -80,7 +80,11 @@ function zsh_install_zplug {
 
 function zsh_install_fzf {
   printf "${GREEN} 📦 Installing fzf...\n${NOCOLOR}"
-  $HOME/.fzf/install --all
+  if [ -d "$HOME/.fzf" ]; then
+    pushd "$HOME/.fzf"
+    ./install --all
+    popd
+  fi
 }
 
 function zshinstall_all {
