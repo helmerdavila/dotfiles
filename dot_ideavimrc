@@ -30,6 +30,7 @@ set relativenumber
 :map <leader>b <Action>(ToggleBookmark)
 :map <leader>m <Action>(ShowBookmarks)
 :map <leader>f <Action>(Find)
+:map <leader>q <Action>(RecentFiles)
 :map <leader>w :w<cr>
 :map <leader>tc :tabclose<cr>
 imap jj <Esc>
