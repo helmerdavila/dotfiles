@@ -25,3 +25,11 @@ let g:airline_theme='onehalflight'
 
 " Share clipboard with system (Mac)
 set clipboard=unnamed
+
+" Coc Background color
+autocmd ColorScheme * call Highlight()
+
+function! Highlight() abort
+  hi CocMenuSel ctermbg=Blue guibg=#bce8f5
+  hi CocSearch ctermfg=12 guifg=#18A3FF
+endfunction

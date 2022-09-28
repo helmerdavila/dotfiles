@@ -176,14 +176,6 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <c-i> coc#refresh()
 
-" Coc Background color
-autocmd ColorScheme * call Highlight()
-
-function! Highlight() abort
-  hi CocMenuSel ctermbg=Blue guibg=#bce8f5
-  hi CocSearch ctermfg=12 guifg=#18A3FF
-endfunction
-
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
