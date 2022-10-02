@@ -23,7 +23,7 @@ set relativenumber
 :map <leader>nr :NERDTreeRefreshRoot<cr>
 """ Editor Actions
 :map <leader>r <Action>(ReformatCode)
-:map <leader>z <Action>(TogglePresentationMode)
+:map <leader>z <Action>(ToggleDistractionFreeMode)
 :map <leader>o <Action>(GotoFile)
 :map <leader>a <Action>(GotoAction)
 :map <leader>p <Action>(FindInPath)
