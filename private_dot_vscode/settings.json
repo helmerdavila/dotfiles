@@ -111,6 +111,10 @@
       "commands": ["actions.find"]
     },
     {
+      "before": ["<leader>", "t"],
+      "commands": ["terminal.open"]
+    },
+    {
       "before": ["<leader>", "b"],
       "commands": ["bookmarks.toggle"]
     },
