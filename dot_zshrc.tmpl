@@ -265,20 +265,32 @@ alias hremove=npm_yarn_remove
 alias hc="exa -l -a --icons --git --octal-permissions"
 alias hdoc="cht.sh"
 # Aliases
-alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.vimrc"
-alias p10kconfig="vim ~/.p10k.zsh"
-alias tmuxconfig="vim ~/.tmux.conf"
 alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
-alias cup="composer outdated --outdated --direct"
-alias yup="yarn upgrade-interactive --latest"
-alias zr="source ~/.zshrc"
 # Bat aliases for different theme
 alias batl="bat --theme=GitHub"
-alias batd="bat --theme=Dracula"
+alias batd="bat --theme=ansi"
+# --
+alias cup="composer outdated --outdated --direct"
 # Use fzf + Bat
-alias fzfbl="fzf --preview 'bat --theme=OneHalfLight --style=numbers --color=always --line-range :500 {}'"
-alias fzfbd="fzf --preview 'bat --theme=OneHalfDark --style=numbers --color=always --line-range :500 {}'"
+alias fzfbl="fzf --preview 'bat --theme=Github --style=numbers --color=always --line-range :500 {}'"
+alias fzfbd="fzf --preview 'bat --theme=ansi --style=numbers --color=always --line-range :500 {}'"
+# --
+# Kitty aliases
+alias kittyl="kitty +kitten themes --reload-in=all Rosé Pine Dawn"
+alias kittyd="kitty +kitten themes --reload-in=all Night Owl"
+# --
+alias p10kconfig="vim ~/.p10k.zsh"
+alias tmuxconfig="vim ~/.tmux.conf"
+alias vimconfig="vim ~/.vimrc"
+alias yup="yarn upgrade-interactive --latest"
+alias zr="source ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
+
+# Laravel aliases
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias pint='[ -f pint ] && bash pint || bash vendor/bin/pint'
+alias art="php artisan"
+
 
 {{ if (eq .chezmoi.os "linux") }}
 alias pbcopy="clip.exe"
