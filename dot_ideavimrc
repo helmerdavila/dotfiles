@@ -31,8 +31,12 @@ set relativenumber
 :map <leader>m <Action>(ShowBookmarks)
 :map <leader>f <Action>(Find)
 :map <leader>q <Action>(RecentFiles)
+:map <leader>e <Action>(FileStructurePopup)
+:map <leader>t <Action>(ActivateTerminalToolWindow)
 :map <leader>w :w<cr>
 :map <leader>tc :tabclose<cr>
+
+:map <space> :
 imap jj <Esc>
 """ Movement
 :map <C-j> <C-W>j
