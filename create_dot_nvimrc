@@ -2,6 +2,8 @@ set guifont=CodeNewRomanNerdFontCompleteM-:h18
 "set guifont=JetBrainsMonoNerdFontCompleteM-Regular:h18
 "set guifont=FiraCodeNerdFontCompleteM-Retina:h18
 
+let $BAT_THEME='Github'
+
 " You can change the following between dark or light
 set background=light
 
