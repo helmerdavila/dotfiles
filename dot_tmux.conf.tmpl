@@ -3,9 +3,9 @@ unbind C-b
 set-option -g prefix C-Space
 bind-key C-Space send-prefix
 
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 set-option -g default-shell "/bin/zsh"
-{{ end }}
+{{- end }}
 
 # Set automatic renumber of windows
 set -g renumber-windows on
@@ -14,8 +14,8 @@ set -g base-index 1
 setw -g pane-base-index 1
 
 # Activity monitors
-setw -g monitor-activity on
-set -g visual-activity on
+setw -g monitor-activity off
+set -g visual-activity off
 
 set-option -g set-titles on
 set-option -g set-titles-string "#T - #W"
@@ -44,12 +44,14 @@ bind -r M-Up resize-pane -U 2
 bind -r M-Right resize-pane -R 2
 
 # Custom bindings
+bind-key Z send-keys 'tfocus' Enter
+# This one is not working with vim
+bind-key C-z send-keys 'tunfocus' Enter
 bind-key | split-window -h
 bind-key - split-window -v
-bind x kill-pane
 bind-key r source-file ~/.tmux.conf \; display-message "Config reloaded"
-bind-key C copy-mode
 bind C-l send-keys 'C-l'
+bind x kill-pane
 
 # TPM Plugins
 set -g @plugin 'tmux-plugins/tpm'

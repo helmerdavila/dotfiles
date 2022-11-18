@@ -220,7 +220,7 @@ function npm_ci_install {
     touch ./node_modules/.metadata_never_index
 }
 
-{{ if (eq .chezmoi.os "darwin") }}
+{{- if (eq .chezmoi.os "darwin") }}
 alias mzshconfig="mvim ~/.zshrc"
 alias mvimconfig="mvim ~/.vimrc"
 alias mp10kconfig="mvim ~/.p10k.zsh"
@@ -260,7 +260,40 @@ alias hci=npm_ci_install
 alias hinstall=npm_yarn_install
 alias hadd=npm_yarn_add
 alias hremove=npm_yarn_remove
-{{ end }}
+{{- end }}
+
+# It only works inside of tmux sessions
+function tmux_focus {
+  tmux splitw -h -b
+  tmux splitw -h
+  tmux send-keys -t 1 cmatrix Enter
+  tmux send-keys -t 3 cmatrix Enter
+  tmux select-layout even-horizontal
+  tmux resize-pane -t 1 -x 20%
+  tmux resize-pane -t 3 -x 20%
+  clear
+}
+
+function tmux_focus_real {
+  tmux splitw -h -b
+  tmux splitw -h
+  tmux clock-mode -t 1
+  tmux clock-mode -t 3
+  tmux select-layout even-horizontal
+  tmux resize-pane -t 1 -x 20%
+  tmux resize-pane -t 3 -x 20%
+  clear
+}
+
+function tmux_unfocus {
+  tmux kill-pane -t 3
+  tmux kill-pane -t 1
+  clear
+}
+
+alias tfocus=tmux_focus
+alias tfocusr=tmux_focus_real
+alias tunfocus=tmux_unfocus
 
 alias hc="exa -l -a --icons --git --octal-permissions"
 alias hdoc="cht.sh"
@@ -292,17 +325,17 @@ alias pint='[ -f pint ] && bash pint || bash vendor/bin/pint'
 alias art="php artisan"
 
 
-{{ if (eq .chezmoi.os "linux") }}
+{{- if (eq .chezmoi.os "linux") }}
 alias pbcopy="clip.exe"
 alias pbpaste="powershell.exe -command 'Get-Clipboard' | head -n -1"
-{{ end }}
+{{- end }}
 
 # Zplug section
-{{ if (eq .chezmoi.os "linux") }}
+{{- if (eq .chezmoi.os "linux") }}
 export ZPLUG_HOME=$HOME/.zplug
-{{ else if (eq .chezmoi.os "darwin") }}
+{{- else if (eq .chezmoi.os "darwin") }}
 export ZPLUG_HOME=$(brew --prefix)/opt/zplug
-{{ end }}
+{{- end }}
 if [ -f $ZPLUG_HOME/init.zsh ]; then
   source $ZPLUG_HOME/init.zsh
   zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -310,11 +343,11 @@ if [ -f $ZPLUG_HOME/init.zsh ]; then
   zplug "romkatv/powerlevel10k", as:theme, depth:1
   zplug "zsh-users/zsh-autosuggestions"
   zplug "jeffreytse/zsh-vi-mode"
-  {{ if (eq .chezmoi.os "darwin") }}
+  {{- if (eq .chezmoi.os "darwin") }}
   zplug "DarrinTisdale/zsh-aliases-exa"
-  {{ else if (eq .chezmoi.os "linux") }}
+  {{- else if (eq .chezmoi.os "linux") }}
   if [ -z $commands[exa] ]; then zsh_exa_install; else zplug "DarrinTisdale/zsh-aliases-exa"; fi
-  {{ end }}
+  {{- end }}
 fi
 
 zplug load
