@@ -15,6 +15,7 @@ Plug 'APZelos/blamer.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'digitaltoad/vim-pug'
 Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kevinoid/vim-jsonc'
