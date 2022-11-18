@@ -5,13 +5,16 @@ endif
 let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-tsserver',
-      \ 'coc-yaml'
+      \ 'coc-yaml',
+      \ 'coc-lists',
+      \ 'coc-eslint'
       \]
 
 " VimPlug
 call plug#begin()
 
 Plug 'APZelos/blamer.nvim'
+Plug 'antoinemadec/coc-fzf'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'digitaltoad/vim-pug'
 Plug 'embark-theme/vim', { 'as': 'embark' }
@@ -156,6 +159,8 @@ endif
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
+noremap <space> :
+
 " Quick save
 nmap <leader>w :w!<cr>
 
@@ -183,6 +188,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nnoremap <leader>e :CocFzfList outline<cr>
+
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -198,22 +205,22 @@ endfunction
 set splitbelow
 set splitright
 
+" Movement maps
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Tab maps
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-
-" Double jj for Esc
-imap jj <Esc>
-
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
+" Double jj for Esc
+imap jj <Esc>
 
 if has("nvim")
   " Custom neovim file
@@ -232,6 +239,8 @@ if has("nvim")
   " Telescope config
   " Search files
   nmap <leader>o :Telescope find_files hidden=true<cr>
+  " Change between buffers
+  nmap <leader>q :Telescope buffers<cr>
   " Search text in files
   nmap <leader>p :Telescope live_grep<cr>
   " Search text in current file
@@ -257,6 +266,8 @@ else
   " Fzf config
   " Search files
   map <leader>o :Files<cr>
+  " Change between buffers
+  nmap <leader>q :Buffers<cr>
   " Search text in all files
   map <leader>p :Ag<cr>
   " Search in file
