@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.arch "arm64" }}
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+
+{{- end }}
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
