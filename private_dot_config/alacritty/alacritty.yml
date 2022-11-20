@@ -1,18 +1,30 @@
 env:
   TERM: xterm-256color
 font:
+  # normal:
+  #   family: JetbrainsMono Nerd Font Mono
+  #   style: Regular
+  # bold:
+  #   family: JetbrainsMono Nerd Font Mono
+  #   style: Bold
+  # italic:
+  #   family: JetbrainsMono Nerd Font Mono
+  #   style: Italic
+  # bold_italic:
+  #   family: JetbrainsMono Nerd Font Mono
+  #   style: Bold
   normal:
-    family: JetbrainsMono Nerd Font Mono
+    family: MonoLisaHelmer Nerd Font
     style: Regular
   bold:
-    family: JetbrainsMono Nerd Font Mono
+    family: MonoLisaHelmer Nerd Font
     style: Bold
   italic:
-    family: JetbrainsMono Nerd Font Mono
-    style: Italic
+    family: MonoLisaHelmer Nerd Font
+    style: Regular Italic
   bold_italic:
-    family: JetbrainsMono Nerd Font Mono
-    style: Bold
+    family: MonoLisaHelmer Nerd Font
+    style: Bold Italic
   # normal:
   #   family: CodeNewRoman Nerd Font Mono
   #   style: Book
@@ -28,7 +40,7 @@ font:
   size: 20
   offset:
     x: 0
-    y: 2
+    y: 0
 colors:
   name: TokyoNight Storm
   author: Folke
