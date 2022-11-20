@@ -262,7 +262,7 @@ alias hremove=npm_yarn_remove
 {{- end }}
 
 # It only works inside of tmux sessions
-function tmux_focus {
+function tmux_focus_fancy {
   tmux splitw -h -b
   tmux splitw -h
   tmux send-keys -t 1 cmatrix Enter
@@ -290,8 +290,8 @@ function tmux_unfocus {
   clear
 }
 
-alias tfocus=tmux_focus
-alias tfocusr=tmux_focus_real
+alias tfocusf=tmux_focus_fancy
+alias tfocus=tmux_focus_real
 alias tunfocus=tmux_unfocus
 
 alias hc="exa -l -a --icons --git --octal-permissions"
