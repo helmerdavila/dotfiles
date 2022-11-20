@@ -36,6 +36,8 @@ set relativenumber
 :map <leader>r <Action>(RenameElement)
 :map <leader>w :w<cr>
 :map <leader>tc :tabclose<cr>
+:map [g <Action>(GotoPreviousError)
+:map ]g <Action>(GotoNextError)
 
 :map <space> :
 imap jj <Esc>

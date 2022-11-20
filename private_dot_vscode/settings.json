@@ -155,8 +155,16 @@
       "commands": [":tabclose"]
     },
     {
-      "after": ["F", "<space>", "x", "f", "<space>", "x"],
-      "before": ["d", "s", "<space>"]
+      "before": ["d", "s", "<space>"],
+      "after": ["F", "<space>", "x", "f", "<space>", "x"]
+    },
+    {
+      "before": ["[", "g"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "g"],
+      "commands": ["editor.action.marker.next"]
     }
   ],
   "vim.surround": true,
