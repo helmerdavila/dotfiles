@@ -116,7 +116,7 @@ function zsh_brew_install {
     printf "${GREEN} 📦 Installing/Updating Brew...\n${NOCOLOR}"
   fi
   printf "${GREEN} 📦 Installing brew packages and casks...\n${NOCOLOR}"
-  brew bundle
+  brew bundle --file {{ joinPath .chezmoi.homeDir "Brewfile" | quote }}
 }
 
 function zshinstall_all_macos {
