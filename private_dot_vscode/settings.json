@@ -47,7 +47,7 @@
   // "editor.fontSize": 20,
   "editor.fontSize": 17,
   "editor.formatOnSave": true,
-  "editor.lineHeight": 30,
+  "editor.lineHeight": 50,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
