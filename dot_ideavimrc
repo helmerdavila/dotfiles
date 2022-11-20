@@ -33,6 +33,7 @@ set relativenumber
 :map <leader>q <Action>(RecentFiles)
 :map <leader>e <Action>(FileStructurePopup)
 :map <leader>t <Action>(ActivateTerminalToolWindow)
+:map <leader>r <Action>(RenameElement)
 :map <leader>w :w<cr>
 :map <leader>tc :tabclose<cr>
 

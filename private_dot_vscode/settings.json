@@ -104,7 +104,7 @@
     },
     {
       "before": ["<leader>", "r"],
-      "commands": ["editor.action.formatDocument"]
+      "commands": ["editor.action.rename"]
     },
     {
       "before": ["<leader>", "f"],
