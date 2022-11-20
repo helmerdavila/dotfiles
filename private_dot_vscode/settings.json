@@ -92,7 +92,11 @@
     },
     {
       "before": ["<leader>", "e"],
-      "commands": ["workbench.action.files.saveWithoutFormatting"]
+      "commands": ["workbench.action.files.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.action.quickOpenPreviousEditor"]
     },
     {
       "before": ["<leader>", "o"],
