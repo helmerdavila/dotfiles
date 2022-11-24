@@ -47,8 +47,8 @@ bind -r M-Right resize-pane -R 2
 bind-key Z send-keys 'tfocus' Enter
 # This one is not working with vim
 bind-key C-z send-keys 'tunfocus' Enter
-bind-key | split-window -h
-bind-key - split-window -v
+bind-key | split-window -h -c "#{pane_current_path}"
+bind-key - split-window -v -c "#{pane_current_path}"
 bind-key r source-file ~/.tmux.conf \; display-message "Config reloaded"
 bind C-l send-keys 'C-l'
 bind x kill-pane
