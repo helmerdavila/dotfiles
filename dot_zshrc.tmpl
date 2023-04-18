@@ -193,7 +193,7 @@ function zvm_config {
 }
 
 {{ if (eq .chezmoi.os "linux") }}
-plugins=(colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm yarn tmux ssh-agent)
+plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm yarn terraform tmux ssh-agent)
 # zsh => ssh autoload, should be before sourcing ohmyzsh
 zstyle :omz:plugins:ssh-agent identities id_ed25519
 {{ else if (eq .chezmoi.os "darwin") }}
@@ -202,8 +202,7 @@ export COMPOSER_MEMORY_LIMIT=-1
 export PATH=$HOME/.jetbrains:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
-plugins=(brew colored-man-pages composer gh git docker docker-compose jsontools ruby rbenv npm nvm yarn tmux)
-
+plugins=(aliases brew colored-man-pages composer gh git docker docker-compose jsontools ruby rbenv npm nvm yarn terraform tmux)
 {{ end }}
 
 source $ZSH/oh-my-zsh.sh
@@ -310,6 +309,10 @@ alias fzfbd="fzf --preview 'bat --theme=ansi --style=numbers --color=always --li
 # Kitty aliases
 alias kittyl="kitty +kitten themes --reload-in=all Rosé Pine Dawn"
 alias kittyd="kitty +kitten themes --reload-in=all Night Owl"
+# --
+# SSH aliases
+alias ssh-create-ed="ssh-keygen -t ed25519 -C '11061182+helmerdavila@users.noreply.github.com'"
+alias ssh-create-rsa="ssh-keygen -t rsa -b 4096 -C '11061182+helmerdavila@users.noreply.github.com'"
 # --
 alias p10kconfig="vim ~/.p10k.zsh"
 alias tmuxconfig="vim ~/.tmux.conf"
