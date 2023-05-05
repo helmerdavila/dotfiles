@@ -166,6 +166,7 @@ export PATH=$HOME/.cargo/bin:$PATH
 {{ if (eq .chezmoi.os "darwin") }}
 {{ if (eq .chezmoi.arch "arm64") }}
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
 {{ end }}
 {{ end }}
 # Used By NVM
