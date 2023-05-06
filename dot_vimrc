@@ -130,6 +130,7 @@ set si
 set nowrap
 set path+=**
 set wildignore+=*/node_modules/*
+set iskeyword-=_
 
 if !exists('g:syntax_on')
 	syntax enable
