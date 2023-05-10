@@ -36,6 +36,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
+Plug 'easymotion/vim-easymotion'
 
 " Themes
 Plug 'sainnhe/sonokai'
