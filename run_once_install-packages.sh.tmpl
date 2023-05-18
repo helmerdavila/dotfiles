@@ -1,10 +1,12 @@
 #!/bin/bash
 
 {{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.osRelease.id "ubuntu" }}
 sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo apt update -y
 sudo apt install -y ripgrep tmux diff-so-fancy
 curl -sS https://starship.rs/install.sh | sh
+{{- end }}
 {{- else }}
 echo "Your operating system is not a Linux environment"
 {{- end }}

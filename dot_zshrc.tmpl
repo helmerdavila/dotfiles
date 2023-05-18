@@ -11,7 +11,8 @@ function zsh_omz_install {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
-{{ if (eq .chezmoi.os "linux") }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   if eq .chezmoi.osRelease.id "ubuntu" }}
 ZSH_LATEST_RIPGREP=$(curl -Ls https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep 'tag_name' | cut -d'"' -f4)
 ZSH_LATEST_BAT=$(curl -Ls https://api.github.com/repos/sharkdp/bat/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
 ZSH_LATEST_EXA=$(curl -Ls https://api.github.com/repos/ogham/exa/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
@@ -72,13 +73,13 @@ function zsh_exa_install {
   rm -rf $HOME/exa_tmp_folder
 }
 
-function zsh_install_zplug {
+function zsh_zplug_install {
   # Zplug
   printf "${GREEN} 📦 Installing zplug...\n${NOCOLOR}"
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 }
 
-function zsh_install_fzf {
+function zsh_fzf_install {
   printf "${GREEN} 📦 Installing fzf...\n${NOCOLOR}"
   if [ -d "$HOME/.fzf" ]; then
     pushd "$HOME/.fzf"
@@ -90,8 +91,8 @@ function zsh_install_fzf {
 function zshinstall_all {
   # Unzip: Required for exa
   if [ -z $commands[unzip] ]; then sudo apt install unzip; else printf "${GREEN} ✅ Unzip is installed\n${NOCOLOR}"; fi
-  zsh_install_zplug
-  zsh_install_fzf
+  zsh_zplug_install
+  zsh_fzf_install
   zsh_wget_install
   zsh_nvm_install
   zsh_ripgrep_install
@@ -108,8 +109,70 @@ function zshinstall_all {
 
 alias zshinstall=zshinstall_all
 
-{{ else if (eq .chezmoi.os "darwin") }}
+{{-   else if eq .chezmoi.osRelease.id "fedora" }}
+function zsh_ag_install {
+  printf "${GREEN} 📦 Installing Ag search...\n${NOCOLOR}"
+  sudo dnf install the_silver_searcher
+}
 
+function zsh_gh_install {
+  printf "${GREEN} 📦 Installing/Updating GH...\n${NOCOLOR}"
+  sudo dnf install 'dnf-command(config-manager)'
+  sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+  sudo dnf install gh
+}
+
+function zsh_tmux_install {
+  printf "${GREEN} 📦 Installing tmux...\n${NOCOLOR}"
+  sudo dnf install tmux
+}
+
+function zsh_ripgrep_install {
+  printf "${GREEN} 📦 Installing/Updating Ripgrep...\n${NOCOLOR}"
+  sudo dnf install ripgrep
+}
+
+function zsh_bat_install {
+  printf "${GREEN} 📦 Installing/Updating Bat...\n${NOCOLOR}"
+  sudo dnf install bat
+}
+
+function zsh_exa_install {
+  printf "${GREEN} 📦 Installing/Updating Exa...\n${NOCOLOR}"
+  sudo dnf install exa
+}
+
+function zsh_fzf_install {
+  printf "${GREEN} 📦 Installing fzf...\n${NOCOLOR}"
+  if [ -d "$HOME/.fzf" ]; then
+    pushd "$HOME/.fzf"
+    ./install --all
+    popd
+  else
+    sudo dnf install fzf
+  fi
+}
+
+function zshinstall_all {
+  zsh_install_zplug
+  zsh_fzf_install
+  zsh_nvm_install
+  zsh_ripgrep_install
+  zsh_gh_install
+  zsh_bat_install
+  zsh_exa_install
+  zsh_tmux_install
+  zsh_omz_install
+  zsh_ag_install
+  # Refresh shell
+  printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
+  source $HOME/.zshrc
+}
+
+alias zshinstall=zshinstall_all
+{{- end }}
+
+{{- else if eq .osid "darwin" }}
 function zsh_brew_install {
   if [ -z $(command -v brew) ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -145,7 +208,8 @@ function zshupdate_all_macos {
 
 alias zshupdate=zshupdate_all_macos
 alias zshinstall=zshinstall_all_macos
-{{ end }}
+{{- end }}
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -194,7 +258,7 @@ function zvm_config {
 }
 
 {{ if (eq .chezmoi.os "linux") }}
-plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm yarn terraform tmux ssh-agent)
+plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm terraform tmux ssh-agent)
 # zsh => ssh autoload, should be before sourcing ohmyzsh
 zstyle :omz:plugins:ssh-agent identities id_ed25519
 {{ else if (eq .chezmoi.os "darwin") }}
