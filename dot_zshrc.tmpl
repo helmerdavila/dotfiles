@@ -172,7 +172,7 @@ function zshinstall_all {
 alias zshinstall=zshinstall_all
 {{- end }}
 
-{{- else if eq .osid "darwin" }}
+{{- else if eq .chezmoi.osRelease.id "darwin" }}
 function zsh_brew_install {
   if [ -z $(command -v brew) ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
