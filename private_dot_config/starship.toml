@@ -83,4 +83,4 @@ symbol = " "
 symbol = "🅢 "
 
 [terraform]
-format = '[🏎💨 $version$workspace]($style) '
+format = '[💠 $version - $workspace]($style) '
