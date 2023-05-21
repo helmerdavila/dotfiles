@@ -15,7 +15,6 @@ function zsh_omz_install {
 {{-   if eq .chezmoi.osRelease.id "ubuntu" }}
 ZSH_LATEST_RIPGREP=$(curl -Ls https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep 'tag_name' | cut -d'"' -f4)
 ZSH_LATEST_BAT=$(curl -Ls https://api.github.com/repos/sharkdp/bat/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
-ZSH_LATEST_EXA=$(curl -Ls https://api.github.com/repos/ogham/exa/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
 ZSH_LATEST_GH=$(curl -Ls https://api.github.com/repos/cli/cli/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
 
 function zsh_ag_install {
@@ -63,16 +62,6 @@ function zsh_bat_install {
   rm $BAT_PATH
 }
 
-function zsh_exa_install {
-  printf "${GREEN} 📦 Installing/Updating Exa...\n${NOCOLOR}"
-  local EXA_PATH=$HOME/exa.zip
-  wget -O $EXA_PATH https://github.com/ogham/exa/releases/download/v${ZSH_LATEST_EXA}/exa-linux-x86_64-v${ZSH_LATEST_EXA}.zip
-  unzip $EXA_PATH -d $HOME/exa_tmp_folder
-  cp $HOME/exa_tmp_folder/bin/exa $HOME/.local/bin
-  rm $EXA_PATH
-  rm -rf $HOME/exa_tmp_folder
-}
-
 function zsh_zplug_install {
   # Zplug
   printf "${GREEN} 📦 Installing zplug...\n${NOCOLOR}"
@@ -89,8 +78,6 @@ function zsh_fzf_install {
 }
 
 function zshinstall_all {
-  # Unzip: Required for exa
-  if [ -z $commands[unzip] ]; then sudo apt install unzip; else printf "${GREEN} ✅ Unzip is installed\n${NOCOLOR}"; fi
   zsh_zplug_install
   zsh_fzf_install
   zsh_wget_install
@@ -98,7 +85,6 @@ function zshinstall_all {
   zsh_ripgrep_install
   zsh_gh_install
   zsh_bat_install
-  zsh_exa_install
   zsh_tmux_install
   zsh_omz_install
   zsh_ag_install
@@ -410,11 +396,7 @@ if [ -f $ZPLUG_HOME/init.zsh ]; then
   # zplug "romkatv/powerlevel10k", as:theme, depth:1
   zplug "zsh-users/zsh-autosuggestions"
   zplug "jeffreytse/zsh-vi-mode"
-  {{- if (eq .chezmoi.os "darwin") }}
   zplug "DarrinTisdale/zsh-aliases-exa"
-  {{- else if (eq .chezmoi.os "linux") }}
-  if [ -z $commands[exa] ]; then zsh_exa_install; else zplug "DarrinTisdale/zsh-aliases-exa"; fi
-  {{- end }}
 fi
 
 zplug load
