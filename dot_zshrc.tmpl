@@ -415,10 +415,7 @@ zplug load
 eval "$(starship init zsh)"
 
 # FZF
-function init_plugins_to_avoid_conflicts {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-}
-zvm_after_init_commands+=(init_plugins_to_avoid_conflicts)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Personal commands for different companies
 [ -f ~/.personal.zsh ] && source ~/.personal.zsh
