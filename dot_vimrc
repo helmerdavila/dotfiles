@@ -70,6 +70,8 @@ if has('nvim')
   Plug 'hrsh7th/cmp-buffer'
   " Improved tabs
   Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+  " Lspsaga
+  Plug 'glepnir/lspsaga.nvim', { 'tag': 'v0.2.9' }
 else
   Plug 'antoinemadec/coc-fzf'
   Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
@@ -183,17 +185,6 @@ nmap <leader>tv :vert term<cr>
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>1 :source ~/.vimrc<CR>
 
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " Split mapping
 set splitbelow
 set splitright
@@ -226,6 +217,7 @@ if has("nvim")
   lua require("lsp-config")
   lua require("nvim-treesitter-config")
   lua require("bufferline-config")
+  lua require("lspsaga-config")
   " Only plugin setup
   lua require("zen-mode").setup()
 
@@ -263,6 +255,17 @@ else
         \ coc#refresh()
   inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
   inoremap <silent><expr> <c-i> coc#refresh()
+
+  " Use K for show documentation in preview window
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if &filetype == 'vim'
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
 
   " GoTo code navigation.
   nmap <silent> gd <Plug>(coc-definition)
