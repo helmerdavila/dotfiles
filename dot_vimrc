@@ -307,56 +307,58 @@ else
   let g:airline#extensions#tabline#formatter='unique_tail_improved'
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#show_buffers = 0
+
+  " Extra config
+  " JSX - TSX support
+  " set filetypes as typescriptreact
+  autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+
+  " Helps with remembering commands
+  nnoremap <silent> <leader> :WhichKey '\'<CR>
+  vnoremap <silent> <leader> :WhichKeyVisual '\'<CR>
+
+
+  set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+  let g:rg_derive_root='true'
+  " Start NERDTree when Vim is started without file arguments.
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+  """"""""" Colorscheme config
+  let g:vim_jsx_pretty_colorful_config = 1
+
+  hi tsxTagName guifg=#59ACE5
+  hi tsxComponentName guifg=#59ACE5
+  " dark blue
+  hi tsxCloseString guifg=#2974a1
+  hi tsxCloseTag guifg=#2974a1
+  hi tsxAttributeBraces guifg=#2974a1
+  hi tsxEqual guifg=#2974a1
+  hi tsxCloseTagName guifg=#2974a1
+  hi tsxCloseComponentName guifg=#2974a1
+  " green
+  hi tsxAttrib guifg=#1BD1C1
+
+  hi xmlEndTag guifg=#2974a1
+  " hi tsxCloseString guifg=#2974a1
+  hi tsxCloseString guifg=#15608f
+  hi htmlTag guifg=#2974a1
+  hi htmlEndTag guifg=#2974a1
+  hi htmlTagName guifg=#59ACE5
+  hi tsxAttrib guifg=#1BD1C1
+
+  " light-grey
+  hi tsxTypeBraces guifg=#999999
+  " dark-grey
+  hi tsxTypes guifg=#666666
+
+  hi ReactState guifg=#C176A7
+  hi ReactProps guifg=#D19A66
+  hi ApolloGraphQL guifg=#CB886B
+  hi Events ctermfg=204 guifg=#56B6C2
+  hi ReduxKeywords ctermfg=204 guifg=#C678DD
+  hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
+  hi WebBrowser ctermfg=204 guifg=#56B6C2
+  hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 endif
 
-" JSX - TSX support
-" set filetypes as typescriptreact
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
-
-" Helps with remembering commands
-nnoremap <silent> <leader> :WhichKey '\'<CR>
-vnoremap <silent> <leader> :WhichKeyVisual '\'<CR>
-
-
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-let g:rg_derive_root='true'
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-""""""""" Colorscheme config
-let g:vim_jsx_pretty_colorful_config = 1
-
-hi tsxTagName guifg=#59ACE5
-hi tsxComponentName guifg=#59ACE5
-" dark blue
-hi tsxCloseString guifg=#2974a1
-hi tsxCloseTag guifg=#2974a1
-hi tsxAttributeBraces guifg=#2974a1
-hi tsxEqual guifg=#2974a1
-hi tsxCloseTagName guifg=#2974a1
-hi tsxCloseComponentName guifg=#2974a1
-" green
-hi tsxAttrib guifg=#1BD1C1
-
-hi xmlEndTag guifg=#2974a1
-" hi tsxCloseString guifg=#2974a1
-hi tsxCloseString guifg=#15608f
-hi htmlTag guifg=#2974a1
-hi htmlEndTag guifg=#2974a1
-hi htmlTagName guifg=#59ACE5
-hi tsxAttrib guifg=#1BD1C1
-
-" light-grey
-hi tsxTypeBraces guifg=#999999
-" dark-grey
-hi tsxTypes guifg=#666666
-
-hi ReactState guifg=#C176A7
-hi ReactProps guifg=#D19A66
-hi ApolloGraphQL guifg=#CB886B
-hi Events ctermfg=204 guifg=#56B6C2
-hi ReduxKeywords ctermfg=204 guifg=#C678DD
-hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
-hi WebBrowser ctermfg=204 guifg=#56B6C2
-hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
