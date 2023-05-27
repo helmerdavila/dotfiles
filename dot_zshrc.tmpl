@@ -12,7 +12,7 @@ function zsh_omz_install {
 }
 
 {{- if eq .chezmoi.os "linux" }}
-{{-   if (or (eq .chezmoi.osRelease.id "ubuntu") or (eq .chezmoi.osRelease.id "linuxmint")) }}
+{{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 ZSH_LATEST_RIPGREP=$(curl -Ls https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep 'tag_name' | cut -d'"' -f4)
 ZSH_LATEST_BAT=$(curl -Ls https://api.github.com/repos/sharkdp/bat/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
 ZSH_LATEST_GH=$(curl -Ls https://api.github.com/repos/cli/cli/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
