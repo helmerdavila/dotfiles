@@ -14,7 +14,6 @@ let g:coc_global_extensions = [
 call plug#begin()
 
 Plug 'APZelos/blamer.nvim'
-Plug 'antoinemadec/coc-fzf'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'digitaltoad/vim-pug'
 Plug 'embark-theme/vim', { 'as': 'embark' }
@@ -37,6 +36,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
 Plug 'easymotion/vim-easymotion'
+Plug 'github/copilot.vim'
 
 " Themes
 Plug 'sainnhe/sonokai'
@@ -47,7 +47,7 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 if has('nvim')
   " Telescope
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   " Lualine bar + icons
   Plug 'nvim-lualine/lualine.nvim'
@@ -55,14 +55,22 @@ if has('nvim')
   " Better function of themes
   Plug 'folke/lsp-colors.nvim'
   " File sidebar
-  Plug 'kyazdani42/nvim-tree.lua', { 'commit': 'd8bf1ad' }
+  Plug 'kyazdani42/nvim-tree.lua', { 'commit': 'e2a4c9d' }
   " Syntax enhancer
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   " Zen mode
   Plug 'folke/zen-mode.nvim'
   " OneDark Theme
   Plug 'navarasu/onedark.nvim'
+  " Lsp config + autocompletion
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'onsails/lspkind-nvim'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
 else
+  Plug 'antoinemadec/coc-fzf'
   Plug 'jparise/vim-graphql'
   Plug 'leafgarland/typescript-vim'
   Plug 'maxmellon/vim-jsx-pretty'
@@ -173,28 +181,6 @@ nmap <leader>tv :vert term<cr>
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>1 :source ~/.vimrc<CR>
 
-" COC - Autocompletion
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
-" remap for complete to use tab and <cr>
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-inoremap <silent><expr> <c-i> coc#refresh()
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <leader>r <Plug>(coc-rename)
-
-nnoremap <leader>e :CocFzfList outline<cr>
-
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -231,12 +217,16 @@ if has("nvim")
   " Custom neovim file
   source ~/.nvimrc
 
-  " NvimTreeToggle settings
+  " Neovim ~/.config/nvim/lua/*.lua files
   lua require("nvim-tree-config")
   lua require("lualine-config")
   lua require("telescope-config")
+  lua require("lsp-config")
+  lua require("nvim-treesitter-config")
+  " Only plugin setup
   lua require("zen-mode").setup()
-  lua require("nvim-treesitter").setup()
+
+  " NvimTree config
   nnoremap <leader>nn :NvimTreeToggle<CR>
   nnoremap <leader>nr :NvimTreeRefresh<CR>
   nnoremap <leader>nf :NvimTreeFindFile<CR>
@@ -259,6 +249,28 @@ if has("nvim")
 else
   " Custom original vim file
   source ~/.ovimrc
+
+  " COC - Autocompletion
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+  " remap for complete to use tab and <cr>
+  inoremap <silent><expr> <TAB>
+        \ coc#pum#visible() ? coc#pum#next(1):
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+  inoremap <silent><expr> <c-i> coc#refresh()
+
+  " GoTo code navigation.
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  nmap <leader>r <Plug>(coc-rename)
+
+  nnoremap <leader>e :CocFzfList outline<cr>
 
   " NERDTree settings
   " Nerd show hidden files
