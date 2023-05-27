@@ -34,7 +34,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
 Plug 'easymotion/vim-easymotion'
 Plug 'github/copilot.vim'
 
@@ -69,8 +68,11 @@ if has('nvim')
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
+  " Improved tabs
+  Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 else
   Plug 'antoinemadec/coc-fzf'
+  Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
   Plug 'jparise/vim-graphql'
   Plug 'leafgarland/typescript-vim'
   Plug 'maxmellon/vim-jsx-pretty'
@@ -223,6 +225,7 @@ if has("nvim")
   lua require("telescope-config")
   lua require("lsp-config")
   lua require("nvim-treesitter-config")
+  lua require("bufferline-config")
   " Only plugin setup
   lua require("zen-mode").setup()
 
