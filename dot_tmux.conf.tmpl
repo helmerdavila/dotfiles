@@ -1,10 +1,15 @@
 # Rebind prefix key
 unbind C-b
+{{- if eq .chezmoi.os "darwin" }}
 set-option -g prefix C-Space
 bind-key C-Space send-prefix
 
-{{- if eq .chezmoi.os "darwin" }}
 set-option -g default-shell "/bin/zsh"
+{{- else }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+set-option -g prefix C-a
+bind-key C-a send-prefix
+{{   end }}
 {{- end }}
 
 # Set automatic renumber of windows
@@ -17,15 +22,11 @@ setw -g pane-base-index 1
 setw -g monitor-activity off
 set -g visual-activity off
 
-set-option -g set-titles on
-set-option -g set-titles-string "#T - #W"
-
 # Custom configs
 set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ",*256col*:Tc"
 set -g assume-paste-time 0
 set -g mouse on
-set -g pane-border-format "#P: #{pane_current_command}"
 set -g status on
 setw -g aggressive-resize on
 setw -g main-pane-width 200
