@@ -1,7 +1,7 @@
 #!/bin/bash
 
 {{- if eq .chezmoi.os "linux" }}
-{{- if eq .chezmoi.osRelease.id "ubuntu" }}
+{{- if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo apt update -y
 sudo apt install -y ripgrep tmux diff-so-fancy

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Installing nerd fonts"
-  
+
 if [ -d "$HOME/.nerd-fonts" ]; then
   echo "Fonts already installed"
 else
