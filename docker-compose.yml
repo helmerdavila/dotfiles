@@ -1,0 +1,9 @@
+version: '3.2'
+services:
+  chezmoi_container:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /
+    tty: true
+
