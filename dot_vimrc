@@ -221,19 +221,6 @@ if has("nvim")
   " Only plugin setup
   lua require("zen-mode").setup()
 
-  " Telescope config
-  " Search files
-  nmap <leader>o :Telescope find_files hidden=true<cr>
-  " Change between buffers
-  nmap <leader>q :Telescope buffers<cr>
-  " Search text in files
-  nmap <leader>p :Telescope live_grep<cr>
-  " Search text in current file
-  nmap <leader>f :Telescope current_buffer_fuzzy_find<cr>
-  " Search commands
-  nmap <leader>a :Telescope commands<cr>
-  " Search marks
-  nmap <leader>m :Telescope marks<cr>
   " Zen mode
   nmap <leader>z :ZenMode<cr>
 else
