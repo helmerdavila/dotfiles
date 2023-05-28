@@ -9,6 +9,9 @@ set-option -g default-shell "/bin/zsh"
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 set-option -g prefix C-a
 bind-key C-a send-prefix
+{{   else }}
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
 {{   end }}
 {{- end }}
 
