@@ -12,6 +12,14 @@ fi
 
 sudo apt update -y
 
+if !exist git; then
+  sudo apt install -y git
+fi
+
+if !exist zsh; then
+  sudo apt install -y zsh --quiet
+fi
+
 if !exist ripgrep; then
   sudo apt install -y ripgrep
 fi
@@ -38,6 +46,14 @@ fi
 
 curl -sS https://starship.rs/install.sh | sh
 {{-   else eq .chezmoi.osRelease.id "fedora" }}
+if !exist git; then
+  sudo dnf install -y git
+fi
+
+if !exist zsh; then
+  sudo dnf install -y zsh --quiet
+fi
+
 if !exist diff-so-fancy; then
   sudo dnf install -y diff-so-fancy
 fi
