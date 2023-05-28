@@ -263,6 +263,10 @@ else
   " NERDTree settings
   " Nerd show hidden files
   let NERDTreeShowHidden = 1
+  let NERDTreeQuitOnOpen = 0
+  let NERDTreeMapOpenInTab = '<leader>9'
+  let NERDTreeMapOpenVSplit = '<leader>0'
+  let NERDTreeMapOpenSplit = '<leader>-'
 
   map <leader>nn :NERDTreeToggle<cr>
   map <leader>nr :NERDTreeRefreshRoot<cr>
@@ -290,6 +294,15 @@ else
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#show_buffers = 0
 
+  " NERDTree hide root
+  augroup nerdtreehidecwd
+    autocmd!
+    autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeHideCWD #^[</].*$# conceal
+  augroup end
+
+  " Open NERDTree when there is a new tab
+  autocmd BufWinEnter * NERDTreeMirror
+
   " Extra config
   " JSX - TSX support
   " set filetypes as typescriptreact
@@ -298,7 +311,6 @@ else
   " Helps with remembering commands
   nnoremap <silent> <leader> :WhichKey '\'<CR>
   vnoremap <silent> <leader> :WhichKeyVisual '\'<CR>
-
 
   set grepprg=rg\ --vimgrep\ --smart-case\ --follow
   let g:rg_derive_root='true'
