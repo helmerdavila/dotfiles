@@ -20,6 +20,9 @@ telescope.setup {
     mappings = {
       n = {
         ["q"] = actions.close,
+        ["<leader>-"] = actions.select_horizontal,
+        ["<leader>0"] = actions.select_vertical,
+        ["<leader>9"] = actions.select_tab,
       },
     },
   },
