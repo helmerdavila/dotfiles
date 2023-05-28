@@ -221,11 +221,6 @@ if has("nvim")
   " Only plugin setup
   lua require("zen-mode").setup()
 
-  " NvimTree config
-  nnoremap <leader>nn :NvimTreeToggle<CR>
-  nnoremap <leader>nr :NvimTreeRefresh<CR>
-  nnoremap <leader>nf :NvimTreeFindFile<CR>
-
   " Telescope config
   " Search files
   nmap <leader>o :Telescope find_files hidden=true<cr>
