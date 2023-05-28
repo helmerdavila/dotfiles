@@ -13,14 +13,7 @@ function zsh_omz_install {
 
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
-ZSH_LATEST_RIPGREP=$(curl -Ls https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep 'tag_name' | cut -d'"' -f4)
-ZSH_LATEST_BAT=$(curl -Ls https://api.github.com/repos/sharkdp/bat/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
 ZSH_LATEST_GH=$(curl -Ls https://api.github.com/repos/cli/cli/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
-
-function zsh_ag_install {
-  printf "${GREEN} 📦 Installing Ag search...\n${NOCOLOR}"
-  sudo apt install silversearcher-ag
-}
 
 function zsh_wget_install {
   printf "${GREEN} 📦 Installing wget...\n${NOCOLOR}"
@@ -39,27 +32,6 @@ function zsh_alacritty_install {
   printf "${GREEN} 📦 Installing Alacritty...\n${NOCOLOR}"
   sudo add-apt-repository ppa:aslatter/ppa
   sudo apt install alacritty
-}
-
-function zsh_tmux_install {
-  printf "${GREEN} 📦 Installing tmux...\n${NOCOLOR}"
-  sudo apt install tmux
-}
-
-function zsh_ripgrep_install {
-  printf "${GREEN} 📦 Installing/Updating Ripgrep...\n${NOCOLOR}"
-  local RIPGREP_PATH=$HOME/ripgrep.deb
-  wget -O $RIPGREP_PATH https://github.com/BurntSushi/ripgrep/releases/download/${ZSH_LATEST_RIPGREP}/ripgrep_${ZSH_LATEST_RIPGREP}_amd64.deb
-  sudo dpkg -i $RIPGREP_PATH
-  rm $RIPGREP_PATH
-}
-
-function zsh_bat_install {
-  printf "${GREEN} 📦 Installing/Updating Bat...\n${NOCOLOR}"
-  local BAT_PATH=$HOME/bat.deb
-  wget -O $BAT_PATH https://github.com/sharkdp/bat/releases/download/v${ZSH_LATEST_BAT}/bat_${ZSH_LATEST_BAT}_amd64.deb
-  sudo dpkg -i $BAT_PATH
-  rm $BAT_PATH
 }
 
 function zsh_zplug_install {
@@ -82,12 +54,8 @@ function zshinstall_all {
   zsh_fzf_install
   zsh_wget_install
   zsh_nvm_install
-  zsh_ripgrep_install
   zsh_gh_install
-  zsh_bat_install
-  zsh_tmux_install
   zsh_omz_install
-  zsh_ag_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc
@@ -106,21 +74,6 @@ function zsh_gh_install {
   sudo dnf install 'dnf-command(config-manager)'
   sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
   sudo dnf install gh
-}
-
-function zsh_tmux_install {
-  printf "${GREEN} 📦 Installing tmux...\n${NOCOLOR}"
-  sudo dnf install tmux
-}
-
-function zsh_ripgrep_install {
-  printf "${GREEN} 📦 Installing/Updating Ripgrep...\n${NOCOLOR}"
-  sudo dnf install ripgrep
-}
-
-function zsh_bat_install {
-  printf "${GREEN} 📦 Installing/Updating Bat...\n${NOCOLOR}"
-  sudo dnf install bat
 }
 
 function zsh_exa_install {
@@ -143,13 +96,9 @@ function zshinstall_all {
   zsh_install_zplug
   zsh_fzf_install
   zsh_nvm_install
-  zsh_ripgrep_install
   zsh_gh_install
-  zsh_bat_install
   zsh_exa_install
-  zsh_tmux_install
   zsh_omz_install
-  zsh_ag_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc
