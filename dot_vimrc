@@ -44,9 +44,16 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 if has('nvim')
+  let nvim_version = matchstr(execute('version'), 'NVIM v\zs[^\n]*')
   " Telescope
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+
+  if nvim_version == '0.9.0'
+    Plug 'nvim-telescope/telescope.nvim'
+  else
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+  endif
+
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   " Lualine bar + icons
   Plug 'nvim-lualine/lualine.nvim'
