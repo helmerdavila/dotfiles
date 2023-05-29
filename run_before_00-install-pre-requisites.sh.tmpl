@@ -8,13 +8,13 @@ function exist() {
 
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
-sudo apt update -y
 if ! exist git; then
+  sudo apt update -y
   sudo apt install -y git
 fi
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf update -y
 if ! exist git; then
+  sudo dnf update -y
   sudo dnf install -y git
 fi
 {{-   end }}
