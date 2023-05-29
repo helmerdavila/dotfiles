@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    working_dir: /
     tty: true
+    volumes:
+      - ./:/root/.local/share/chezmoi
 
