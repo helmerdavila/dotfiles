@@ -203,7 +203,7 @@ export COMPOSER_MEMORY_LIMIT=-1
 export PATH=$HOME/.jetbrains:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
-plugins=(aliases brew colored-man-pages composer gh git docker docker-compose jsontools ruby rbenv npm nvm yarn terraform tmux)
+plugins=(aliases brew colored-man-pages composer gh git docker docker-compose jsontools ruby rbenv npm nvm yarn terraform tmux zsh-syntax-highlighting zsh-vi-mode)
 {{ end }}
 
 source $ZSH/oh-my-zsh.sh
@@ -343,15 +343,13 @@ export ZPLUG_HOME=$(brew --prefix)/opt/zplug
 {{- end }}
 if [ -f $ZPLUG_HOME/init.zsh ]; then
   source $ZPLUG_HOME/init.zsh
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug "lukechilds/zsh-better-npm-completion", defer:2
-  # zplug "romkatv/powerlevel10k", as:theme, depth:1
   zplug "zsh-users/zsh-autosuggestions"
-  zplug "jeffreytse/zsh-vi-mode"
   zplug "DarrinTisdale/zsh-aliases-exa"
 fi
 
-zplug load
+if exist zplug; then
+  zplug load
 
 {{ if (eq .chezmoi.os "darwin") }}
 # tabtab source for packages
