@@ -6,11 +6,6 @@ function zsh_nvm_install {
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 }
 
-function zsh_omz_install {
-  printf "${GREEN} 📦 Installing oh-my-zsh...\n${NOCOLOR}"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 ZSH_LATEST_GH=$(curl -Ls https://api.github.com/repos/cli/cli/releases/latest | grep 'tag_name' | cut -d'v' -f2 | cut -d'"' -f1)
@@ -55,7 +50,6 @@ function zshinstall_all {
   zsh_wget_install
   zsh_nvm_install
   zsh_gh_install
-  zsh_omz_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc
@@ -98,7 +92,6 @@ function zshinstall_all {
   zsh_nvm_install
   zsh_gh_install
   zsh_exa_install
-  zsh_omz_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc
