@@ -1,10 +1,12 @@
 version: '3.2'
 services:
-  chezmoi_container:
+  chezmoi-ubuntu:
     build:
       context: .
       dockerfile: ./Dockerfile
     tty: true
     volumes:
       - ./:/root/.local/share/chezmoi
+  # TODO: Add Debian
+  # TODO: Add Fedora
 
