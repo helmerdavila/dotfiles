@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -eu
+
+function exist() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
+sudo apt update -y
+if ! exist git; then
+  sudo apt install -y git
+fi
+{{-   else if eq .chezmoi.osRelease.id "fedora" }}
+sudo dnf update -y
+if ! exist git; then
+  sudo dnf install -y git
+fi
+{{-   end }}
+{{- end }}
