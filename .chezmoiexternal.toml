@@ -1,10 +1,14 @@
 [".vim/autoload/plug.vim"]
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    refreshPeriod = "168h"
+    refreshPeriod = "48h"
 {{ if (eq .chezmoi.os "linux") }}
 [".fzf"]
-    type = "git-repo"
-    url = "https://github.com/junegunn/fzf.git"
-    refreshPeriod = "168h"
+    type = "archive"
+    url = "https://github.com/junegunn/fzf/archive/refs/heads/master.zip"
+    refreshPeriod = "48h"
 {{ end }}
+[".nerd-fonts"]
+    type = "archive"
+    url = "https://github.com/ryanoasis/nerd-fonts/archive/refs/heads/master.zip"
+    refreshPeriod = "168h"
