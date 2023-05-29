@@ -9,6 +9,8 @@
     refreshPeriod = "48h"
 {{ end }}
 [".nerd-fonts"]
-    type = "archive"
-    url = "https://github.com/ryanoasis/nerd-fonts/archive/refs/heads/master.zip"
+    type = "git-repo"
+    url = "https://github.com/ryanoasis/nerd-fonts"
     refreshPeriod = "168h"
+    [".nerd-fonts".clone]
+        args = ["--depth=1"]
