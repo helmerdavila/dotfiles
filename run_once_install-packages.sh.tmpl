@@ -10,9 +10,17 @@ function install_omz() {
   if ! [ -d ~/.oh-my-zsh ]; then
       sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   else
-      cd $HOME/.oh-my-zsh
+      cd $HOME/.oh-my-zsh/tools
       sh ./install.sh --unattended --keep-zshrc
       cd $HOME
+  fi
+}
+
+function install_fzf() {
+  if [-d ~/.fzf ]; then
+    cd ~/.fzf
+    ./install --all
+    cd $HOME
   fi
 }
 
@@ -35,6 +43,8 @@ if ! exist zsh; then
 fi
 
 install_omz
+
+install_fzf
 
 if ! exist ripgrep; then
   sudo apt install -y ripgrep
@@ -68,6 +78,8 @@ if ! exist zsh; then
 fi
 
 install_omz
+
+install_fzf
 
 if ! exist diff-so-fancy; then
   sudo dnf install -y diff-so-fancy
