@@ -33,24 +33,7 @@ function zsh_alacritty_install {
   sudo apt install alacritty
 }
 
-function zsh_zplug_install {
-  # Zplug
-  printf "${GREEN} 📦 Installing zplug...\n${NOCOLOR}"
-  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-}
-
-function zsh_fzf_install {
-  printf "${GREEN} 📦 Installing fzf...\n${NOCOLOR}"
-  if [ -d "$HOME/.fzf" ]; then
-    pushd "$HOME/.fzf"
-    ./install --all
-    popd
-  fi
-}
-
 function zshinstall_all {
-  zsh_zplug_install
-  zsh_fzf_install
   zsh_wget_install
   zsh_nvm_install
   zsh_gh_install
@@ -79,20 +62,7 @@ function zsh_exa_install {
   sudo dnf install exa
 }
 
-function zsh_fzf_install {
-  printf "${GREEN} 📦 Installing fzf...\n${NOCOLOR}"
-  if [ -d "$HOME/.fzf" ]; then
-    pushd "$HOME/.fzf"
-    ./install --all
-    popd
-  else
-    sudo dnf install fzf
-  fi
-}
-
 function zshinstall_all {
-  zsh_install_zplug
-  zsh_fzf_install
   zsh_nvm_install
   zsh_gh_install
   zsh_exa_install
@@ -115,12 +85,10 @@ function zsh_brew_install {
 }
 
 function zshinstall_all_macos {
-  printf "${GREEN} 📦 Installing zplug packages...\n${NOCOLOR}"
   zsh_brew_install &
   wait
   source $HOME/.zshrc &
   wait
-  zplug install
   zsh_nvm_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
@@ -130,8 +98,6 @@ function zshinstall_all_macos {
 function zshupdate_all_macos {
   brew update
   zsh_brew_install
-  printf "${GREEN} 📦 Updating zplug packages...\n${NOCOLOR}"
-  zplug update
   zsh_nvm_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
@@ -190,13 +156,37 @@ function zvm_config {
   ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
 }
 
+plugins=(
+    aliases
+    colored-man-pages
+    composer
+    docker
+    docker-compose
+    fast-syntax-highlighting
+    gh
+    git
+    jsontools
+    npm
+    nvm
+    rbenv
+    ruby
+    terraform
+    tmux
+    zsh-better-npm-completion
+    zsh-autosuggestions
+    zsh-vi-mode
+)
+
+if exist exa; then
+  plugins=($plugins zsh-aliases-exa)
+fi
+
 {{ if (eq .chezmoi.os "linux") }}
 # ssh autoload, should be before sourcing ohmyzsh
-if [ -f ~/.ssh/id_ed25519 ]; then
-  plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm terraform tmux ssh-agent zsh-syntax-highlighting zsh-vi-mode)
+if [ -f "$HOME/.ssh/id_ed25519" ]; then
+  plugins=($plugins ssh-agent)
   zstyle :omz:plugins:ssh-agent identities id_ed25519
 else
-   plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm terraform tmux zsh-syntax-highlighting zsh-vi-mode)
   zstyle :omz:plugins:ssh-agent lazy yes
   zstyle :omz:plugins:ssh-agent quiet yes
 fi
@@ -205,8 +195,6 @@ fi
 export COMPOSER_MEMORY_LIMIT=-1
 export PATH=$HOME/.jetbrains:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
-
-plugins=(aliases brew colored-man-pages composer gh git docker docker-compose jsontools ruby rbenv npm nvm yarn terraform tmux zsh-syntax-highlighting zsh-vi-mode)
 {{ end }}
 
 source $ZSH/oh-my-zsh.sh
@@ -337,22 +325,7 @@ alias pbcopy="clip.exe"
 alias pbpaste="powershell.exe -command 'Get-Clipboard' | head -n -1"
 {{- end }}
 
-# Zplug section
-{{- if (eq .chezmoi.os "linux") }}
-export ZPLUG_HOME=$HOME/.zplug
-{{- else if (eq .chezmoi.os "darwin") }}
-export ZPLUG_HOME=$(brew --prefix)/opt/zplug
-{{- end }}
-if [ -f $ZPLUG_HOME/init.zsh ]; then
-  source $ZPLUG_HOME/init.zsh
-  zplug "lukechilds/zsh-better-npm-completion", defer:2
-  zplug "zsh-users/zsh-autosuggestions"
-  zplug "DarrinTisdale/zsh-aliases-exa"
-fi
-
-if exist zplug; then
-  zplug load
-fi
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
 {{ if (eq .chezmoi.os "darwin") }}
 # tabtab source for packages

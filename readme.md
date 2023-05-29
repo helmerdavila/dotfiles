@@ -37,7 +37,6 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
 - Alacritty
 - Ripgrep
 - Bat
-- Zplug
 
 ### Commands
 

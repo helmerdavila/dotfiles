@@ -37,7 +37,6 @@ brew "tree"
 brew "vim"
 brew "wget"
 brew "yq"
-brew "zplug"
 brew "zsh"
 brew "warrensbox/tap/tfswitch"
 
