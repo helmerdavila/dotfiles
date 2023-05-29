@@ -1,6 +1,10 @@
 GREEN="\033[1;32m"
 NOCOLOR="\033[0m"
 
+function exist() {
+  command -v "$1" >/dev/null 2>&1
+}
+
 function zsh_nvm_install {
   printf "${GREEN} 📦 Installing/Updating NVM...\n${NOCOLOR}"
   wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -187,9 +191,15 @@ function zvm_config {
 }
 
 {{ if (eq .chezmoi.os "linux") }}
-plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm terraform tmux ssh-agent)
-# zsh => ssh autoload, should be before sourcing ohmyzsh
-zstyle :omz:plugins:ssh-agent identities id_ed25519
+# ssh autoload, should be before sourcing ohmyzsh
+if [ -f ~/.ssh/id_ed25519 ]; then
+  plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm terraform tmux ssh-agent zsh-syntax-highlighting zsh-vi-mode)
+  zstyle :omz:plugins:ssh-agent identities id_ed25519
+else
+   plugins=(aliases colored-man-pages git docker docker-compose jsontools ruby rbenv npm nvm terraform tmux zsh-syntax-highlighting zsh-vi-mode)
+  zstyle :omz:plugins:ssh-agent lazy yes
+  zstyle :omz:plugins:ssh-agent quiet yes
+fi
 {{ else if (eq .chezmoi.os "darwin") }}
 # Composer
 export COMPOSER_MEMORY_LIMIT=-1
@@ -322,7 +332,6 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias pint='[ -f pint ] && bash pint || bash vendor/bin/pint'
 alias art="php artisan"
 
-
 {{- if (eq .chezmoi.os "linux") }}
 alias pbcopy="clip.exe"
 alias pbpaste="powershell.exe -command 'Get-Clipboard' | head -n -1"
@@ -343,6 +352,7 @@ fi
 
 if exist zplug; then
   zplug load
+fi
 
 {{ if (eq .chezmoi.os "darwin") }}
 # tabtab source for packages
