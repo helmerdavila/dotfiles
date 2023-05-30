@@ -1,9 +1,14 @@
 #!/bin/bash
 
 GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
 
 function exist() {
   command -v "$1" >/dev/null 2>&1
+}
+
+function print_msg() {
+  echo -e "${GREEN}$1 \n${NOCOLOR}"
 }
 
 function install_omz() {
@@ -24,16 +29,36 @@ function install_fzf() {
   fi
 }
 
-cd $HOME/.nerd-fonts
-if [ "$(id -u)" -ne 0 ]; then
-  sudo ./install.sh -q
-else
-  ./install.sh -q
-fi
-cd $HOME
+function installing_nerd_fonts() {
+  FONT_VERSION="v3.0.1"
+
+  print_msg "Installing Nerd Fonts $FONT_VERSION"
+
+  mkdir -p ~/.local/share/fonts
+  cd ~/.local/share/fonts
+
+  declare -a fonts=(
+    "CascadiaCode"
+    "FantasqueSansMono"
+    "FiraCode"
+    "JetBrainsMono"
+    "VictorMono"
+  )
+
+  for font in "${fonts[@]}"; do
+    print_msg "Installing $font"
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/${FONT_VERSION}/${font}.zip
+    unzip -f "$font.zip"
+    rm "$font.zip"
+  done
+
+  cd $HOME
+}
 
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
+installing_nerd_fonts
+
 if ! exist diff-so-fancy; then
   sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 fi
@@ -72,6 +97,7 @@ fi
 
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
+installing_nerd_fonts
 
 if ! exist zsh; then
   sudo dnf install -y zsh --quiet
@@ -105,6 +131,14 @@ if ! exist bat; then
   sudo dnf install -y bat
 fi
 {{-   end }}
-{{- else }}
-echo "Your operating system is not a Linux environment"
+{{- else if eq .chezmoi.os "darwin" }}
+print_msg "Installing Homebrew"
+
+if ! exist brew; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+print_msg "Installing brew dependencies"
+
+brew bundle install
 {{- end }}

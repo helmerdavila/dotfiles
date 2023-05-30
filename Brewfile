@@ -7,6 +7,13 @@ tap "homebrew/services"
 tap "ngrok/ngrok"
 tap "warrensbox/tap"
 
+# Fonts first
+brew "font-caskaydia-cove-nerd-font"
+brew "font-fantasque-sans-mono-nerd-font"
+brew "font-fira-code-nerd-font"
+brew "font-jetbrains-mono-nerd-font"
+brew "font-victor-mono-nerd-font"
+
 brew "awscli"
 brew "bat"
 brew "chezmoi"

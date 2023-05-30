@@ -9,13 +9,24 @@ function exist() {
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 if ! exist git; then
-  sudo apt update -y
   sudo apt install -y git
 fi
+if ! exist unzip; then
+  sudo apt install -y unzip
+fi
+if ! exist wget; then
+  sudo apt install -y wget
+fi
+{{-   else if eq .chezmoi.osRelease.id "debian" }}
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 if ! exist git; then
-  sudo dnf update -y
-  sudo dnf install -y git
+  sudo dnf install -y git unzip
+fi
+if ! exist unzip; then
+  sudo dnf install -y unzip
+fi
+if ! exist wget; then
+  sudo dnf install -y wget
 fi
 {{-   end }}
 {{- end }}

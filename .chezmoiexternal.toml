@@ -43,9 +43,3 @@
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     refreshPeriod = "48h"
 {{ end }}
-[".nerd-fonts"]
-    type = "git-repo"
-    url = "https://github.com/ryanoasis/nerd-fonts"
-    refreshPeriod = "168h"
-    [".nerd-fonts".clone]
-        args = ["--depth=1"]
