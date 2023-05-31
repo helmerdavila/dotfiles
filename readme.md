@@ -6,7 +6,15 @@ A group of dotfiles for my daily development
 
 ### macOS
 
-- Brew
+- Version: Ventura or greater
+
+### Ubuntu
+
+- Version: 22.04 or greater
+
+### Fedora
+
+- Version: 38 or greater
 
 ## Steps
 
@@ -26,7 +34,6 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
 - Vim plug
 - `~/.vimrc` file
 - `~/.ideavimrc` file (used for Jetbrains)
-- `~/.p10k.zsh` file
 - `~/.tmux.conf` file
 - `~/.config/alacritty/alacritty.yml` file
 
@@ -37,12 +44,6 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
 - Alacritty
 - Ripgrep
 - Bat
-
-### Commands
-
-- `zshinstall`: Install all "Extra" dependencies
-- `zshupdate`: Update all "Extra" dependencies
-- `zsh_alacritty_install`: Install alacritty
 
 ## Creating an ~/.nvimrc (Custom Neovim) and ~/.ovimrc (Custom Original Vim)
 
