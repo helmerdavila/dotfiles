@@ -66,7 +66,9 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   " Zen mode
   Plug 'folke/zen-mode.nvim'
-  " OneDark Theme
+  " Theme Catpuccino
+  Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+  " Theme OneDark
   Plug 'navarasu/onedark.nvim'
   " Lsp config + autocompletion
   Plug 'neovim/nvim-lspconfig'
@@ -98,6 +100,8 @@ else
   " Airline Bar + Themes
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " Theme Catpuccino
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 endif
 
 call plug#end()

@@ -3,14 +3,18 @@ set guifont=CodeNewRomanNerdFontCompleteM-:h18
 "set guifont=JetBrainsMonoNerdFontCompleteM-Regular:h18
 "set guifont=FiraCodeNerdFontCompleteM-Retina:h18
 
-let $BAT_THEME='Github'
+" Light theme for bat
+" let $BAT_THEME='Github'
+" Dark theme for bat
+let $BAT_THEME='Dracula'
 
 " You can change the following between dark or light
-set background=light
+" set background=light
+set background=dark
 
 " Theme: OneHalfLight (Default | Light theme)
-colorscheme onehalflight
-let g:airline_theme='onehalflight'
+" colorscheme onehalflight
+" let g:airline_theme='onehalflight'
 
 " Theme: papercolor (Light theme)
 " set background=light
@@ -25,6 +29,14 @@ let g:airline_theme='onehalflight'
 
 " Theme: Nightfly (Dark Theme)
 " colorscheme nightfly
+
+" Theme: Catppuccino (Dark Theme)
+colorscheme catppuccin_frappe
+let g:airline_theme='catppuccin_frappe'
+
+" Theme: Catppuccino (Light Theme)
+" colorscheme catppuccin_latte
+" let g:airline_theme='catppuccin_latte'
 
 " Share clipboard with system (Mac)
 set clipboard=unnamed
