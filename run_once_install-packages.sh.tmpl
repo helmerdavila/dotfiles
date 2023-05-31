@@ -148,4 +148,6 @@ install_starship
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
 install_nvm
+
+brew bundle --file {{ joinPath .chezmoi.homeDir "Brewfile" | quote }}
 {{- end }}
