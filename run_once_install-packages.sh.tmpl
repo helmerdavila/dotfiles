@@ -47,7 +47,7 @@ function installing_nerd_fonts() {
 
   for font in "${fonts[@]}"; do
     print_msg "Installing $font"
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/${FONT_VERSION}/${font}.zip
+    wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/${FONT_VERSION}/${font}.zip
     unzip -f "$font.zip"
     rm "$font.zip"
   done
@@ -69,12 +69,11 @@ installing_nerd_fonts
 
 if ! exist diff-so-fancy; then
   print_msg "Installing diff-so-fancy"
-  sudo add-apt-repository -y ppa:aos1/diff-so-fancy
-  sudo apt install -y diff-so-fancy
+  sudo nala install -y diff-so-fancy
 fi
 
 if ! exist zsh; then
-  sudo apt install -y zsh --quiet
+  sudo nala install -y zsh
 fi
 
 install_omz
@@ -82,23 +81,23 @@ install_omz
 install_fzf
 
 if ! exist ripgrep; then
-  sudo apt install -y ripgrep
+  sudo nala install -y ripgrep
 fi
 
 if ! exist tmux; then
-  sudo apt install -y tmux
+  sudo nala install -y tmux
 fi
 
 if ! exist ag; then
-  sudo apt install -y silversearcher-ag
+  sudo nala install -y silversearcher-ag
 fi
 
 if ! exist wget; then
-  sudo apt install -y wget
+  sudo nala install -y wget
 fi
 
 if ! exist bat; then
-  sudo apt install -y bat
+  sudo nala install -y bat
 fi
 
 install_nvm
