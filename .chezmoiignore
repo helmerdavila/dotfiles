@@ -1,4 +1,4 @@
 readme.md
 .gitignore
 docker-compose.yml
-Dockerfile
+/.docker

@@ -3,10 +3,19 @@ services:
   chezmoi-ubuntu:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: .docker/ubuntu/Dockerfile
+    image: helmer_dotfiles_ubuntu
     tty: true
     volumes:
       - ./:/root/.local/share/chezmoi
+  chezmoi-fedora:
+    build:
+      context: .
+      dockerfile: .docker/fedora/Dockerfile
+    image: helmer_dotfiles_fedora
+    tty: true
+    volumes:
+      - ./:/root/.local/share/chezmoi
+
   # TODO: Add Debian
-  # TODO: Add Fedora
 

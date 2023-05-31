@@ -63,6 +63,10 @@ function install_nvm() {
   fi
 }
 
+function install_starship() {
+  curl -sS https://starship.rs/install.sh | sh -s -- -y
+}
+
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 installing_nerd_fonts
@@ -102,7 +106,7 @@ fi
 
 install_nvm
 
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+install_starship
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 installing_nerd_fonts
 
@@ -139,6 +143,8 @@ if ! exist bat; then
 fi
 
 install_nvm
+
+install_starship
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
 install_nvm
