@@ -22,7 +22,7 @@ function install_omz() {
 }
 
 function install_fzf() {
-  if [-d ~/.fzf ]; then
+  if [ -d ~/.fzf ]; then
     cd ~/.fzf
     ./install --all
     cd $HOME
