@@ -186,7 +186,6 @@ function npm_ci_install {
 
 {{- if (eq .chezmoi.os "darwin") }}
 alias nzshconfig="nvim ~/.zshrc"
-alias nvimconfig="nvim ~/.vimrc"
 alias ntmuxconfig="nvim ~/.tmux.conf"
 alias brew-all="brew services list"
 alias brew-start="brew services start"
@@ -283,7 +282,10 @@ alias ssh-create-rsa="ssh-keygen -t rsa -b 4096 -C '11061182+helmerdavila@users.
 # --
 alias p10kconfig="vim ~/.p10k.zsh"
 alias tmuxconfig="vim ~/.tmux.conf"
-alias vimconfig="vim ~/.vimrc"
+alias vc="$EDITOR ~/.vimrc"
+alias vcc="$EDITOR ~/.ovimrc"
+alias nvc="$EDITOR ~/.config/nvim/init.lua"
+alias nvcc="$EDITOR ~/.config/nvim/lua/custom.lua"
 alias yup="yarn upgrade-interactive --latest"
 alias zr="source ~/.zshrc"
 alias zshconfig="vim ~/.zshrc"

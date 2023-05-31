@@ -4,7 +4,7 @@ vim.cmd("let plug_home = stdpath('data') . '/plugged'")
 vim.cmd("source ~/.vimrc")
 
 -- Custom settings
-require("~/.nvim")
+require("custom")
 
 vim.opt.inccommand = split
 
@@ -19,6 +19,6 @@ require("lspsaga-config")
 require("catppuccin-config")
 
 -- Only plugin setup that doesn't need a file
-lua require("zen-mode").setup()
+require("zen-mode").setup()
 
 vim.keymap.set("n", "<leader>z", ":ZenMode<CR>")
