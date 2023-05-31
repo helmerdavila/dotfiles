@@ -23,6 +23,7 @@ if ! exist wget; then
   sudo nala install -y wget
 fi
 {{-   else if eq .chezmoi.osRelease.id "debian" }}
+# Future setup for Debian 12
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 if ! exist git; then
   sudo dnf install -y git
@@ -33,10 +34,10 @@ fi
 if ! exist wget; then
   sudo dnf install -y wget
 fi
-{{-   else if eq .chezmoi.os "darwin" }}
+{{-   end }}
+{{- else if eq .chezmoi.os "darwin" }}
 if ! exist brew; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 brew bundle --file {{ joinPath .chezmoi.homeDir "Brewfile" | quote }}
-{{-   end }}
 {{- end }}
