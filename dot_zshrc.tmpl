@@ -39,11 +39,6 @@ function zshinstall_all {
 alias zshinstall=zshinstall_all
 
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
-function zsh_ag_install {
-  printf "${GREEN} 📦 Installing Ag search...\n${NOCOLOR}"
-  sudo dnf install the_silver_searcher
-}
-
 function zsh_gh_install {
   printf "${GREEN} 📦 Installing/Updating GH...\n${NOCOLOR}"
   sudo dnf install 'dnf-command(config-manager)'
@@ -68,20 +63,8 @@ alias zshinstall=zshinstall_all
 {{- end }}
 
 {{- else if eq .chezmoi.os "darwin" }}
-function zsh_brew_install {
-  if [ -z $(command -v brew) ]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    printf "${GREEN} 📦 Installing/Updating Brew...\n${NOCOLOR}"
-  fi
-  printf "${GREEN} 📦 Installing brew packages and casks...\n${NOCOLOR}"
-  brew bundle --file {{ joinPath .chezmoi.homeDir "Brewfile" | quote }}
-}
-
 function zshinstall_all_macos {
-  zsh_brew_install &
-  wait
-  source $HOME/.zshrc &
-  wait
+  source $HOME/.zshrc
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc
@@ -89,7 +72,6 @@ function zshinstall_all_macos {
 
 function zshupdate_all_macos {
   brew update
-  zsh_brew_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc

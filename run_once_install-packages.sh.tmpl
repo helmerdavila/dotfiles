@@ -142,15 +142,5 @@ fi
 install_nvm
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
-print_msg "Installing Homebrew"
-
-if ! exist brew; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
 install_nvm
-
-print_msg "Installing brew dependencies"
-
-brew bundle install
 {{- end }}
