@@ -13,9 +13,9 @@ local function custom_on_attach(bufnr)
   keymap.set("n", "<leader>nn", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
   keymap.set("n", "<leader>nr", ":NvimTreeRefresh<CR>", {noremap = true, silent = true})
   keymap.set("n", "<leader>nf", ":NvimTreeFindFile<CR>", {noremap = true, silent = true})
-  keymap.set("n", "<leader>-", tree_api.node.open.horizontal, {noremap = true, silent = true})
-  keymap.set("n", "<leader>0", tree_api.node.open.vertical, {noremap = true, silent = true})
-  keymap.set("n", "<leader>9", tree_api.node.open.tab, {noremap = true, silent = true})
+  keymap.set("n", "<leader>1", tree_api.node.open.tab, {noremap = true, silent = true})
+  keymap.set("n", "<leader>2", tree_api.node.open.horizontal, {noremap = true, silent = true})
+  keymap.set("n", "<leader>3", tree_api.node.open.vertical, {noremap = true, silent = true})
 end
 
 require"nvim-tree".setup {

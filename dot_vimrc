@@ -190,7 +190,7 @@ nmap <leader>t :term<cr>
 nmap <leader>tv :vert term<cr>
 
 " Source Vim configuration file and install plugins
-nnoremap <silent><leader>1 :source ~/.vimrc<CR>
+nnoremap <silent><leader>9 :source ~/.vimrc<CR>
 
 " Split mapping
 set splitbelow
@@ -271,9 +271,9 @@ else
   " Nerd show hidden files
   let NERDTreeShowHidden = 1
   let NERDTreeQuitOnOpen = 0
-  let NERDTreeMapOpenInTab = '<leader>9'
-  let NERDTreeMapOpenVSplit = '<leader>0'
-  let NERDTreeMapOpenSplit = '<leader>-'
+  let NERDTreeMapOpenInTab = '<leader>1'
+  let NERDTreeMapOpenVSplit = '<leader>2'
+  let NERDTreeMapOpenSplit = '<leader>3'
 
   map <leader>nn :NERDTreeToggle<cr>
   map <leader>nr :NERDTreeRefreshRoot<cr>
