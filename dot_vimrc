@@ -182,7 +182,10 @@ nmap <leader>w :w!<cr>
 
 " Open terminal
 nmap <leader>t :term<cr>
-nmap <leader>tv :vert term<cr>
+nmap <leader>y :vert term<cr>
+
+" Toggle relative numbers
+nmap <leader>n :set relativenumber!<cr>
 
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>9 :source ~/.vimrc<CR>
