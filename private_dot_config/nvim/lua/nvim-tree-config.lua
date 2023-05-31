@@ -25,7 +25,7 @@ require"nvim-tree".setup {
     root_folder_label = false,
   },
   view = {
-    relativenumber = true,
+    relativenumber = false,
     width = 40,
   },
   open_on_tab = true,
