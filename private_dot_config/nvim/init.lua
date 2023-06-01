@@ -16,7 +16,6 @@ require("lsp-config")
 require("nvim-treesitter-config")
 require("bufferline-config")
 require("lspsaga-config")
-require("catppuccin-config")
 
 -- Only plugin setup that doesn't need a file
 require("zen-mode").setup()
