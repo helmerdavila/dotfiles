@@ -1,0 +1,9 @@
+{{- $work := (default false (env "WORK_ENV")) -}}
+
+diff:
+  pager: diff-so-fancy
+data:
+  isWorkComputer: {{ $work }}
+  linux:
+    appsPath: {{ .chezmoi.homeDir }}/.local/bin
+    neovimSource: {{ .chezmoi.homeDir }}/.neovim
