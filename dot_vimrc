@@ -44,7 +44,7 @@ if has('nvim')
   " Telescope
   Plug 'nvim-lua/plenary.nvim'
 
-  if nvim_version == '0.9.0'
+  if (nvim_version == '0.9.0' || nvim_version == '0.9.1')
     Plug 'nvim-telescope/telescope.nvim'
   else
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
