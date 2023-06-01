@@ -2,6 +2,7 @@
 
 GREEN="\033[1;32m"
 NOCOLOR="\033[0m"
+CARGO_PATH="{{ .chezmoi.homeDir }}/.cargo/bin"
 
 function exist() {
   command -v "$1" >/dev/null 2>&1
@@ -67,9 +68,21 @@ function install_starship() {
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 }
 
+function install_rust_and_cargo() {
+  if ! exist cargo; then
+    print_msg "Installing Rust and Cargo"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-update-default-toolchain
+    {{ .chezmoi.homeDir }}/.cargo/bin/rustup default stable
+  fi
+}
+
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 installing_nerd_fonts
+
+if ! exist gcc; then
+  sudo nala install -y build-essential
+fi
 
 if ! exist diff-so-fancy; then
   print_msg "Installing diff-so-fancy"
@@ -107,8 +120,19 @@ fi
 install_nvm
 
 install_starship
+
+install_rust_and_cargo
+
+if ! exist exa; then
+  "$CARGO_PATH/cargo" install exa
+fi
+{{-   else if eq .chezmoi.osRelease.id "debian" }}
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 installing_nerd_fonts
+
+if ! exist gcc; then
+  sudo dnf install -y @development-tools
+fi
 
 if ! exist zsh; then
   sudo dnf install -y zsh --quiet
@@ -142,9 +166,19 @@ if ! exist bat; then
   sudo dnf install -y bat
 fi
 
+if ! exist nvim; then
+  sudo dnf install -y neovim
+fi
+
 install_nvm
 
 install_starship
+
+install_rust_and_cargo
+
+if ! exist exa; then
+  "$CARGO_PATH/cargo" install exa
+fi
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
 install_nvm

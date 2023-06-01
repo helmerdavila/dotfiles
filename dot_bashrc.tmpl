@@ -1,6 +1,9 @@
-{{- if eq .chezmoi.arch "arm64" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-   if eq .chezmoi.arch "arm64" }}
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
-
+{{-   end }}
+{{- else }}
+. "$HOME/.cargo/env"
 {{- end }}
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
