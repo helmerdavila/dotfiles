@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -eu
+
+function exist() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+{{- if eq .chezmoi.os "linux" }}
+{{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
+# Repositories
+sudo add-apt-repository -y ppa:aos1/diff-so-fancy
+sudo apt update -y
+sudo apt install nala -y
+
+if ! exist git; then
+  sudo nala install -y git
+fi
+if ! exist unzip; then
+  sudo nala install -y unzip
+fi
+if ! exist wget; then
+  sudo nala install -y wget
+fi
+{{-   else if eq .chezmoi.osRelease.id "debian" }}
+# Future setup for Debian 12
+{{-   else if eq .chezmoi.osRelease.id "fedora" }}
+if ! exist git; then
+  sudo dnf install -y git
+fi
+if ! exist unzip; then
+  sudo dnf install -y unzip
+fi
+if ! exist wget; then
+  sudo dnf install -y wget
+fi
+{{-   end }}
+{{- else if eq .chezmoi.os "darwin" }}
+if ! exist brew; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+{{- end }}
