@@ -1,8 +1,12 @@
+{{- $fontVersion := .fontVersion -}}
+{{- $fonts := .fonts -}}
 #!/bin/bash
 
 GREEN="\033[1;32m"
 NOCOLOR="\033[0m"
 CARGO_PATH="{{ .chezmoi.homeDir }}/.cargo/bin"
+APPS_PATH="{{ .linux.appsPath }}"
+NVIM_VERSION="v0.9.1"
 
 function exist() {
   command -v "$1" >/dev/null 2>&1
@@ -12,48 +16,51 @@ function print_msg() {
   echo -e "${GREEN}$1 \n${NOCOLOR}"
 }
 
+function setup() {
+  mkdir -p "$APPS_PATH"
+}
+
 function install_omz() {
-  if ! [ -d ~/.oh-my-zsh ]; then
+  if ! [ -d {{ .chezmoi.homeDir }}/.oh-my-zsh ]; then
       sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   else
-      cd $HOME/.oh-my-zsh/tools
+      cd {{ .chezmoi.homeDir }}/.oh-my-zsh/tools
       sh ./install.sh --unattended --keep-zshrc
-      cd $HOME
+      cd {{ .chezmoi.homeDir }}
   fi
 }
 
 function install_fzf() {
-  if [ -d ~/.fzf ]; then
-    cd ~/.fzf
+  if [ -d {{ .chezmoi.homeDir }}/.fzf ]; then
+    cd {{ .chezmoi.homeDir }}/.fzf
     ./install --all
-    cd $HOME
+    cd {{ .chezmoi.homeDir }}
   fi
 }
 
 function installing_nerd_fonts() {
-  FONT_VERSION="v3.0.1"
+  FONT_VERSION="{{ $fontVersion }}"
 
   print_msg "Installing Nerd Fonts $FONT_VERSION"
 
-  mkdir -p ~/.local/share/fonts
-  cd ~/.local/share/fonts
+  mkdir -p {{ .chezmoi.homeDir }}/.local/share/fonts
+  cd {{ .chezmoi.homeDir }}/.local/share/fonts
 
   declare -a fonts=(
-    "CascadiaCode"
-    "FantasqueSansMono"
-    "FiraCode"
-    "JetBrainsMono"
-    "VictorMono"
+    {{- range $font := $fonts }}
+      {{ $font }}
+    {{- end }}
   )
 
   for font in "${fonts[@]}"; do
-    print_msg "Installing $font"
-    wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/${FONT_VERSION}/${font}.zip
-    unzip -f "$font.zip"
-    rm "$font.zip"
+    if ! [ -f "$font.zip" ]; then
+      print_msg "Installing $font"
+      wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/${FONT_VERSION}/${font}.zip
+      unzip -o "$font.zip"
+    fi
   done
 
-  cd $HOME
+  cd {{ .chezmoi.homeDir }}
 }
 
 function install_nvm() {
@@ -78,6 +85,8 @@ function install_rust_and_cargo() {
 
 {{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
+setup
+
 installing_nerd_fonts
 
 if ! exist gcc; then
@@ -115,6 +124,25 @@ fi
 
 if ! exist bat; then
   sudo nala install -y bat
+  ln -s /usr/bin/batcat {{ .linux.appsPath }}/bat
+fi
+
+if ! exist gh; then
+  sudo nala install -y gh
+fi
+
+if ! exist vim; then
+  sudo nala install -y vim
+fi
+
+if [ ! exist nvim ] && [ ! -f /usr/local/bin/nvim ]; then
+  sudo nala install -y cmake gettext
+  cd {{ .linux.neovimSource }}
+  make CMAKE_BUILD_TYPE=Release
+  make install
+  cd {{ .chezmoi.homeDir }}
+else
+  print_msg "Neovim already installed"
 fi
 
 install_nvm
@@ -127,6 +155,7 @@ if ! exist exa; then
   "$CARGO_PATH/cargo" install exa
 fi
 {{-   else if eq .chezmoi.osRelease.id "debian" }}
+# TODO
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 installing_nerd_fonts
 
@@ -164,6 +193,14 @@ fi
 
 if ! exist bat; then
   sudo dnf install -y bat
+fi
+
+if ! exist gh; then
+  sudo dnf install -y gh
+fi
+
+if ! exist vim; then
+  sudo dnf install -y vim
 fi
 
 if ! exist nvim; then
