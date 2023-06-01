@@ -1,3 +1,4 @@
+# oh-my-zsh and plugins
 [".oh-my-zsh"]
     type = "archive"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
@@ -33,13 +34,26 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "48h"
+# Vim plug
 [".vim/autoload/plug.vim"]
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    refreshPeriod = "48h"
-{{ if (eq .chezmoi.os "linux") }}
+    refreshPeriod = "300h"
+[".local/share/nvim/site/autoload/plug.vim"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    refreshPeriod = "300h"
+{{- if (eq .chezmoi.os "linux") }}
+{{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
+# Neovim will be build from this directory
+[".neovim"]
+    type = "archive"
+    url = "https://github.com/neovim/neovim/archive/v0.9.1.tar.gz"
+    refreshPeriod = "1000h"
+    stripComponents = 1
+{{-   end }}
 [".fzf"]
     type = "archive"
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     refreshPeriod = "48h"
-{{ end }}
+{{- end }}
