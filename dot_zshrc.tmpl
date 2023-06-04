@@ -114,7 +114,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #export BAT_THEME="OneHalfLight"
-export BAT_THEME="Dracula"
+export BAT_THEME="Catppuccin-frappe"
 # Used by tmux
 export TERM="xterm-256color"
 # FZF default search engine (requires ripgrep)
@@ -268,13 +268,13 @@ alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
 # Lazygit
 alias lg="lazygit"
 # Bat aliases for different theme
-alias batl="bat --theme=GitHub"
-alias batd="bat --theme=ansi"
+alias batl="bat --theme=Catppuccin-latte"
+alias batd="bat --theme=Catppuccin-frappe"
 # --
 alias cup="composer outdated --outdated --direct"
 # Use fzf + Bat
-alias fzfbl="fzf --preview 'bat --theme=Github --style=numbers --color=always --line-range :500 {}'"
-alias fzfbd="fzf --preview 'bat --theme=ansi --style=numbers --color=always --line-range :500 {}'"
+alias fzfbl="fzf --preview 'bat --theme=Catppuccin-latte --style=numbers --color=always --line-range :500 {}'"
+alias fzfbd="fzf --preview 'bat --theme=Catppuccin-frappe --style=numbers --color=always --line-range :500 {}'"
 # --
 # Kitty aliases
 alias kittyl="kitty +kitten themes --reload-in=all Rosé Pine Dawn"

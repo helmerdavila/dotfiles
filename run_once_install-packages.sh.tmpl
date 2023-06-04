@@ -125,6 +125,9 @@ fi
 if ! exist bat; then
   sudo nala install -y bat
   ln -s /usr/bin/batcat {{ .linux.appsPath }}/bat
+else
+  print_msg "Bat already installed. Rebuilding cache..."
+  bat cache --build
 fi
 
 if ! exist gh; then
@@ -193,6 +196,9 @@ fi
 
 if ! exist bat; then
   sudo dnf install -y bat
+else
+  print_msg "Bat already installed. Rebuilding cache..."
+  bat cache --build
 fi
 
 if ! exist gh; then
@@ -219,6 +225,10 @@ fi
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
 install_nvm
+
+if exist bat; then
+  bat cache --build
+fi
 
 brew bundle --file {{ joinPath .chezmoi.homeDir "Brewfile" | quote }}
 {{- end }}
