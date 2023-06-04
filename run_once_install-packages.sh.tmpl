@@ -16,6 +16,15 @@ function print_msg() {
   echo -e "${GREEN}$1 \n${NOCOLOR}"
 }
 
+function install_nvm() {
+  print_msg "Installing NVM"
+
+  if ! exist nvm; then
+    PROFILE=/dev/null bash -c 'wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash'
+  fi
+}
+
+{{- if eq .chezmoi.os "linux" }}
 function setup() {
   mkdir -p "$APPS_PATH"
 }
@@ -63,14 +72,6 @@ function installing_nerd_fonts() {
   cd {{ .chezmoi.homeDir }}
 }
 
-function install_nvm() {
-  print_msg "Installing NVM"
-
-  if ! exist nvm; then
-    PROFILE=/dev/null bash -c 'wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash'
-  fi
-}
-
 function install_starship() {
   curl -sS https://starship.rs/install.sh | sh -s -- -y
 }
@@ -83,7 +84,6 @@ function install_rust_and_cargo() {
   fi
 }
 
-{{- if eq .chezmoi.os "linux" }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
 setup
 
@@ -139,7 +139,7 @@ if ! exist vim; then
 fi
 
 if [ ! exist nvim ] && [ ! -f /usr/local/bin/nvim ]; then
-  sudo nala install -y cmake gettext
+  sudo nala install -y cmake gettext ninja-build
   cd {{ .linux.neovimSource }}
   make CMAKE_BUILD_TYPE=Release
   make install
