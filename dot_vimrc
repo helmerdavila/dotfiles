@@ -20,7 +20,6 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vim-which-key'
 Plug 'machakann/vim-highlightedyank'
-Plug 'mhinz/vim-signify'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'preservim/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
@@ -77,6 +76,8 @@ if has('nvim')
   Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
   " Lspsaga
   Plug 'glepnir/lspsaga.nvim', { 'tag': 'v0.2.9' }
+  " Git
+  Plug 'lewis6991/gitsigns.nvim', { 'tag': 'v0.6' }
 else
   Plug 'antoinemadec/coc-fzf'
   Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
@@ -98,6 +99,8 @@ else
   Plug 'vim-airline/vim-airline-themes'
   " Theme Catpuccin
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+  " Git
+  Plug 'mhinz/vim-signify'
 endif
 
 call plug#end()
