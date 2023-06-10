@@ -159,6 +159,73 @@ if ! exist exa; then
 fi
 {{-   else if eq .chezmoi.osRelease.id "debian" }}
 # TODO
+{{-   else if eq .chezmoi.osRelease.id "arch" }}
+function installing_nerd_fonts() {
+  sudo pacman -S --noconfirm ttf-fantasque-nerd ttf-firacode-nerd
+}
+
+installing_nerd_fonts
+
+install_fzf
+
+if ! exist diff-so-fancy; then
+  sudo pacman -S --noconfirm diff-so-fancy
+fi
+
+if ! exist zsh; then
+  sudo pacman -S --noconfirm zsh
+fi
+
+install_omz
+
+if ! exist ripgrep; then
+  sudo pacman -S --noconfirm ripgrep
+fi
+
+if ! exist tmux; then
+  sudo pacman -S --noconfirm tmux
+fi
+
+if ! exist ag; then
+  sudo pacman -S --noconfirm the_silver_searcher
+fi
+
+if ! exist bat; then
+  sudo pacman -S --noconfirm bat
+else
+  print_msg "Bat already installed. Rebuilding cache..."
+  bat cache --build
+fi
+
+if ! exist gh; then
+  sudo pacman -S --noconfirm github-cli
+fi
+
+if ! exist vim; then
+  sudo pacman -S --noconfirm vim
+fi
+
+if ! exist exa; then
+  sudo pacman -S --noconfirm exa
+fi
+
+if ! exist htop; then
+  sudo pacman -S --noconfirm htop
+fi
+
+if ! exist nvim; then
+  sudo pacman -S --no-confirm neovim
+fi
+
+if ! exist lazygit; then
+  sudo pacman -S --noconfirm lazygit
+fi
+
+install_nvm
+
+install_starship
+
+install_rust_and_cargo
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 installing_nerd_fonts
 

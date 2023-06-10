@@ -24,6 +24,16 @@ if ! exist wget; then
 fi
 {{-   else if eq .chezmoi.osRelease.id "debian" }}
 # Future setup for Debian 12
+{{-   else if eq .chezmoi.osRelease.id "arch" }}
+if ! exist chezmoi; then
+  sudo pacman -S --noconfirm chezmoi
+fi
+if ! exist git; then
+  sudo pacman -S --noconfirm git
+fi
+if ! exist wget; then
+  sudo pacman -S --noconfirm wget
+fi
 {{-   else if eq .chezmoi.osRelease.id "fedora" }}
 if ! exist git; then
   sudo dnf install -y git
