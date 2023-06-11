@@ -1,6 +1,6 @@
 # oh-my-zsh and plugins
 [".oh-my-zsh"]
-    type = "archive"
+    type = "git-repo"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
     stripComponents = 1
     refreshPeriod = "48h"
