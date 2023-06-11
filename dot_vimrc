@@ -31,6 +31,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'github/copilot.vim'
+Plug 'alker0/chezmoi.vim'
 
 " Themes
 Plug 'sainnhe/sonokai'
