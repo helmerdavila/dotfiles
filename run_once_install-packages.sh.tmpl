@@ -30,9 +30,7 @@ function setup() {
 }
 
 function install_omz() {
-  if ! [ -d {{ .chezmoi.homeDir }}/.oh-my-zsh ]; then
-      sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-  else
+  if [ -d {{ .chezmoi.homeDir }}/.oh-my-zsh ]; then
       cd {{ .chezmoi.homeDir }}/.oh-my-zsh/tools
       sh ./install.sh --unattended --keep-zshrc
       cd {{ .chezmoi.homeDir }}
@@ -136,6 +134,14 @@ fi
 
 if ! exist vim; then
   sudo nala install -y vim
+fi
+
+if ! exist lazygit; then
+  print_msg "Installing Lazygit"
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  sudo install lazygit /usr/local/bin
 fi
 
 if [ ! exist nvim ] && [ ! -f /usr/local/bin/nvim ]; then
@@ -243,6 +249,11 @@ install_fzf
 
 if ! exist diff-so-fancy; then
   sudo dnf install -y diff-so-fancy
+fi
+
+if ! exist lazygit; then
+  print_msg "Installing lazygit"
+  sudo dnf install -y lazygit
 fi
 
 if ! exist ripgrep; then
