@@ -1,7 +1,7 @@
 # oh-my-zsh and plugins
 [".oh-my-zsh"]
     type = "git-repo"
-    url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+    url = "https://github.com/ohmyzsh/ohmyzsh"
     stripComponents = 1
     refreshPeriod = "48h"
 [".oh-my-zsh/custom/plugins/fast-syntax-highlighting"]
