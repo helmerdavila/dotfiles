@@ -109,6 +109,7 @@ if ! exist ripgrep; then
 fi
 
 if ! exist tmux; then
+  print_msg "Installing Tmux"
   sudo nala install -y tmux
 fi
 
@@ -121,6 +122,7 @@ if ! exist wget; then
 fi
 
 if ! exist bat; then
+  print_msg "Installing Bat"
   sudo nala install -y bat
   ln -s /usr/bin/batcat {{ .linux.appsPath }}/bat
 else
@@ -129,17 +131,23 @@ else
 fi
 
 if ! exist gh; then
+  print_msg "Installing Github CLI"
   sudo nala install -y gh
 fi
 
 if ! exist vim; then
+  print_msg "Installing Vim"
   sudo nala install -y vim
 fi
 
 if ! exist lazygit; then
   print_msg "Installing Lazygit"
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  {{ if (eq .chezmoi.arch "arm64") }}
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_arm64.tar.gz"
+  {{ else }}
   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  {{ end }}
   tar xf lazygit.tar.gz lazygit
   sudo install lazygit /usr/local/bin
 fi
