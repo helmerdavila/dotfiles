@@ -240,6 +240,10 @@ function tmux_focus_fancy {
   clear
 }
 
+function git_checkout_fzf {
+  git branch | grep -v "^\*" | fzf --height=20% --reverse --info=inline | xargs git checkout
+}
+
 function tmux_focus_real {
   tmux splitw -h -b
   tmux splitw -h
@@ -263,6 +267,7 @@ alias tunfocus=tmux_unfocus
 
 alias hc="exa -l -a --icons --git --octal-permissions"
 alias hdoc="cht.sh"
+alias hgco=git_checkout_fzf
 # Alacritty config
 alias alacrittyconfig="vim ~/.config/alacritty/alacritty.yml"
 # Lazygit
