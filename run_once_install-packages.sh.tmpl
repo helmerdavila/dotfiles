@@ -16,11 +16,11 @@ function print_msg() {
   echo -e "${GREEN}$1 \n${NOCOLOR}"
 }
 
-function install_nvm() {
-  print_msg "Installing NVM"
+function install_volta() {
+  print_msg "Installing volta"
 
-  if ! exist nvm; then
-    PROFILE=/dev/null bash -c 'wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash'
+  if ! exist volta; then
+    curl https://get.volta.sh | bash
   fi
 }
 
@@ -162,7 +162,7 @@ else
   print_msg "Neovim already installed"
 fi
 
-install_nvm
+install_volta
 
 install_starship
 
@@ -235,7 +235,7 @@ if ! exist lazygit; then
   sudo pacman -S --noconfirm lazygit
 fi
 
-install_nvm
+install_volta
 
 install_starship
 
@@ -299,7 +299,7 @@ if ! exist nvim; then
   sudo dnf install -y neovim
 fi
 
-install_nvm
+install_volta
 
 install_starship
 
@@ -310,7 +310,7 @@ if ! exist exa; then
 fi
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
-install_nvm
+install_volta
 
 if exist bat; then
   bat cache --build

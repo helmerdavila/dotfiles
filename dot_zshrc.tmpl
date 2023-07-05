@@ -109,10 +109,6 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
 {{ end }}
 {{ end }}
-# Used By NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #export BAT_THEME="OneHalfLight"
 export BAT_THEME="Catppuccin-frappe"
 # Used by tmux
@@ -144,7 +140,6 @@ plugins=(
     git
     jsontools
     npm
-    nvm
     rbenv
     ruby
     terraform
