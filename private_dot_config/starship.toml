@@ -84,3 +84,6 @@ symbol = "🅢 "
 
 [terraform]
 format = '[💠 $version - $workspace]($style) '
+
+[battery]
+disabled = true
