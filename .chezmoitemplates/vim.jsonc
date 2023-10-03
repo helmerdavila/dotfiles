@@ -49,7 +49,7 @@
       "commands": ["bookmarks.listFromAllFiles"]
     },
     {
-      "before": ["<leader>", "c"],
+      "before": ["<leader>", "a"],
       "commands": ["workbench.action.showCommands"]
     },
     {
