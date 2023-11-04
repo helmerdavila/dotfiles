@@ -78,14 +78,21 @@ set -g @plugin "christoomey/vim-tmux-navigator"
 set -g @plugin "dracula/tmux"
 
 # Theme config
+{{- if eq .chezmoi.os "darwin" }}
+set -g @dracula-plugins "cpu-usage ram-usage network-vpn"
+{{- else }}
 set -g @dracula-plugins "cpu-usage gpu-usage ram-usage network-vpn"
+{{- end }}
 set -g @dracula-show-flags true
 set -g @dracula-show-left-icon " #S"
 set -g @dracula-show-powerline false
 set -g @dracula-border-contrast true
 set -g @dracula-show-empty-plugins false
 set -g @dracula-cpu-usage-label " CPU"
+{{- if ne .chezmoi.os "darwin" }}
+# Avoid GPU usage on mac
 set -g @dracula-gpu-usage-label " GPU"
+{{- end }}
 set -g @dracula-ram-usage-label " RAM"
 
 # TPM Config
