@@ -79,6 +79,9 @@ function install_rust_and_cargo() {
     print_msg "Installing Rust and Cargo"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-update-default-toolchain
     {{ .chezmoi.homeDir }}/.cargo/bin/rustup default stable
+  else
+    print_msg "Rust and Cargo already installed, upgrading..."
+    {{ .chezmoi.homeDir }}/.cargo/bin/rustup update
   fi
 }
 
