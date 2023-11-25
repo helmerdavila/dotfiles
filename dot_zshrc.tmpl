@@ -47,14 +47,8 @@ function zsh_gh_install {
   sudo dnf install gh
 }
 
-function zsh_exa_install {
-  printf "${GREEN} 📦 Installing/Updating Exa...\n${NOCOLOR}"
-  sudo dnf install exa
-}
-
 function zshinstall_all {
   zsh_gh_install
-  zsh_exa_install
   # Refresh shell
   printf "${GREEN} 📦 Reloading shell...\n${NOCOLOR}"
   source $HOME/.zshrc
@@ -149,8 +143,8 @@ plugins=(
     zsh-vi-mode
 )
 
-if exist exa; then
-  plugins=($plugins zsh-aliases-exa)
+if exist eza; then
+  plugins=($plugins zsh-aliases-eza)
 fi
 
 {{ if (eq .chezmoi.os "linux") }}

@@ -168,8 +168,8 @@ install_starship
 
 install_rust_and_cargo
 
-if ! exist exa; then
-  "$CARGO_PATH/cargo" install exa
+if ! exist eza; then
+  "$CARGO_PATH/cargo" install eza
 fi
 {{-   else if eq .chezmoi.osRelease.id "debian" }}
 # TODO
@@ -219,8 +219,8 @@ if ! exist vim; then
   sudo pacman -S --noconfirm vim
 fi
 
-if ! exist exa; then
-  sudo pacman -S --noconfirm exa
+if ! exist eza; then
+  sudo pacman -S --noconfirm eza
 fi
 
 if ! exist htop; then
@@ -305,8 +305,8 @@ install_starship
 
 install_rust_and_cargo
 
-if ! exist exa; then
-  "$CARGO_PATH/cargo" install exa
+if ! exist eza; then
+  "$CARGO_PATH/cargo" install eza
 fi
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}

@@ -10,7 +10,7 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "48h"
-[".oh-my-zsh/custom/plugins/zsh-aliases-exa"]
+[".oh-my-zsh/custom/plugins/zsh-aliases-eza"]
     type = "archive"
     url = "https://github.com/DarrinTisdale/zsh-aliases-exa/archive/master.tar.gz"
     exact = true
