@@ -2,15 +2,19 @@
 set surround
 set commentary
 set argtextobj
-set easymotion
 set textobj-entire
 set ReplaceWithRegister
 set NERDTree
 set highlightedyank
 set iskeyword-=_
+set easymotion
 
 """ Plugin settings -------------------------
 let g:argtextobj_pairs="[:],(:),<:>"
+let g:surround_no_mappings=1
+let g:NERDTreeMapActivateNode='<cr>'
+let g:NERDTreeMapOpenVSplit="s"
+let g:NERDTreeMapOpenSplit="S"
 
 """ Common settings -------------------------
 set showmode
@@ -18,34 +22,49 @@ set so=5
 set incsearch
 set relativenumber
 
-""" NERDTree
-:map <leader>nn :NERDTreeToggle<cr>
-:map <leader>nf :NERDTreeFind<cr>
-:map <leader>nr :NERDTreeRefreshRoot<cr>
-""" Editor Actions
-:map <leader>r <Action>(ReformatCode)
-:map <leader>z <Action>(ToggleDistractionFreeMode)
-:map <leader>o <Action>(GotoFile)
-:map <leader>a <Action>(GotoAction)
-:map <leader>p <Action>(FindInPath)
-:map <leader>b <Action>(ToggleBookmark)
-:map <leader>m <Action>(ShowBookmarks)
-:map <leader>f <Action>(Find)
-:map <leader>q <Action>(RecentFiles)
-:map <leader>e <Action>(FileStructurePopup)
-:map <leader>t <Action>(ActivateTerminalToolWindow)
-:map <leader>r <Action>(RenameElement)
-:map <leader>w :w<cr>
-:map <leader>tc :tabclose<cr>
-:map <leader>n :set relativenumber!<cr>
-:map [g <Action>(GotoPreviousError)
-:map ]g <Action>(GotoNextError)
+""" remap leader key to space
+let mapleader=" "
 
-:map <space> :
-imap jj <Esc>
-""" Movement
+""" Windows settings ------------------------
+:map <leader>- :split<cr>
+:map <leader>\| :vsplit<cr>
 :map <C-j> <C-W>j
 :map <C-k> <C-W>k
 :map <C-h> <C-W>h
 :map <C-l> <C-W>l
+
+
+""" File navigation -------------------------
+:map <leader>ff <Action>(GotoFile)
+:map <leader>ss <Action>(FileStructurePopup)
+:map <leader>sS <Action>(GotoSymbol)
+:map <leader>, <Action>(RecentFiles)
+:map <leader>e :NERDTreeToggle<cr>
+:map <leader>E :NERDTreeFind<cr>
+:map <leader><tab>x :tabclose<cr>
+:map <leader>]b :bnext<cr>
+:map <leader>[b :bprevious<cr>
+:map <leader>sm <Action>(ShowBookmarks)
+:nmap <leader>mm <Action>(ToggleBookmark)
+:nmap s <Plug>(easymotion-f)
+:nmap S <Plug>(easymotion-F)
+
+""" Code actions ----------------------------
+:map <leader>cf <Action>(ReformatCode)
+:map <leader>cr <Action>(RenameElement)
+:map [e <Action>(GotoPreviousError)
+:map ]e <Action>(GotoNextError)
+:nmap gzd <Plug>DSurround
+:nmap gzr <Plug>CSurround
+:nmap gza <Plug>YSurround
+:vmap gza <Plug>VSurround
+
+""" Offtopic --------------------------------
+:map <leader>z <Action>(ToggleDistractionFreeMode)
+:map <leader>w :w<cr>
+:map <leader>: <Action>(GotoAction)
+:map <leader>uL :set relativenumber!<cr>
+:map <leader>uw <Action>(EditorToggleUseSoftWraps)
+:nmap <leader>qq <Action>(Exit)
+imap jj <Esc>
 
