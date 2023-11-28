@@ -39,6 +39,7 @@ let mapleader=" "
 :map <leader>ss <Action>(FileStructurePopup)
 :map <leader>sS <Action>(GotoSymbol)
 :map <leader>, <Action>(RecentFiles)
+:map <leader>/ <Action>(FindInPath)
 :map <leader>e :NERDTreeToggle<cr>
 :map <leader>E :NERDTreeFind<cr>
 :map <leader><tab>x :tabclose<cr>
