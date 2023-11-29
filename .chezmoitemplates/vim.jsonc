@@ -1,60 +1,50 @@
   "vim.easymotion": true,
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "vim.surround": true,
+  "vim.useSystemClipboard": true,
   "vim.insertModeKeyBindings": [
     {
-      "after": ["<Esc>"],
-      "before": ["j", "j"]
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
     }
   ],
   "vim.normalModeKeyBindings": [
+    // File and Workspace Operations
     {
       "before": ["<leader>", "w"],
       "commands": ["workbench.action.files.save"]
     },
     {
-      "before": ["<leader>", "e"],
+      "before": ["<leader>", "s", "s"],
       "commands": ["workbench.action.files.gotoSymbol"]
     },
     {
-      "before": ["<leader>", "q"],
-      "commands": ["workbench.action.quickOpenPreviousEditor"]
-    },
-    {
-      "before": ["<leader>", "o"],
+      "before": ["<leader>", "f", "f"],
       "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": ["<leader>", "p"],
+      "before": ["<leader>", "f", "t"],
+      "commands": ["workbench.action.quickOpenTerm"]
+    },
+    {
+      "before": ["<leader>", "/"],
       "commands": ["workbench.action.findInFiles"]
     },
     {
-      "before": ["<leader>", "r"],
-      "commands": ["editor.action.rename"]
-    },
-    {
-      "before": ["<leader>", "f"],
-      "commands": ["actions.find"]
-    },
-    {
-      "before": ["<leader>", "t"],
-      "commands": ["terminal.open"]
-    },
-    {
-      "before": ["<leader>", "b"],
-      "commands": ["bookmarks.toggle"]
-    },
-    {
-      "before": ["<leader>", "m"],
-      "commands": ["bookmarks.listFromAllFiles"]
-    },
-    {
-      "before": ["<leader>", "a"],
+      "before": ["<leader>", ":"],
       "commands": ["workbench.action.showCommands"]
     },
     {
       "before": ["<leader>", "z"],
       "commands": ["workbench.action.toggleZenMode"]
+    },
+
+    // Navigation and Window Management
+    {
+      "before": ["<leader>", ","],
+      "commands": ["workbench.action.quickOpenPreviousEditor"]
     },
     {
       "before": ["<C-k>"],
@@ -73,24 +63,52 @@
       "commands": ["workbench.action.navigateRight"]
     },
     {
-      "before": ["<leader>", "t", "c"],
+      "before": ["<leader>", "<tab>", "x"],
       "commands": [":tabclose"]
-    },
-    {
-      "before": ["d", "s", "<space>"],
-      "after": ["F", "<space>", "x", "f", "<space>", "x"]
     },
     {
       "before": ["[", "g"],
       "commands": ["editor.action.marker.prev"]
     },
     {
+      "before": ["<leader>", "f", "t"],
+      "commands": ["terminal.open"]
+    },
+    {
       "before": ["]", "g"],
       "commands": ["editor.action.marker.next"]
+    },
+
+    // Editing and Refactoring
+    {
+      "before": ["s"],
+      "after": ["<leader>", "<leader>", "2", "f"]
+    },
+    {
+      "before": ["S"],
+      "after": ["<leader>", "<leader>", "2", "F"]
+    },
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "s", "b"],
+      "commands": ["actions.find"]
+    },
+    {
+      "before": ["<leader>", "m", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<leader>", "s", "m"],
+      "commands": ["bookmarks.listFromAllFiles"]
+    },
+    {
+      "before": ["d", "s", "<space>"],
+      "after": ["F", "<space>", "x", "f", "<space>", "x"]
     }
   ],
-  "vim.surround": true,
-  "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindings": [
     {
       "before": [">"],
