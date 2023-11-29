@@ -206,7 +206,7 @@ nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 nmap <leader>r <Plug>(coc-rename)
 
-nnoremap <leader>e :CocFzfList outline<cr>
+nnoremap <leader>ss :CocFzfList outline<cr>
 
 " NERDTree settings
 " Nerd show hidden files
