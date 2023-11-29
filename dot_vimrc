@@ -146,11 +146,16 @@ set hidden
 " Quick save
 nmap <leader>w :w!<cr>
 
+nmap <leader>qq :q!<cr>
+
 " Open terminal
 nmap <leader>ft :term<cr>
 
 " Toggle relative numbers
 nmap <leader>uL :set rnu!<cr>
+
+" Toggle soft wrap
+nmap <leader>uw :set wrap!<cr>
 
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>9 :source ~/.vimrc<CR>
@@ -211,9 +216,14 @@ let NERDTreeMapOpenInTab = 't'
 let NERDTreeMapOpenVSplit = 'S'
 let NERDTreeMapOpenSplit = 's'
 
-map <leader>nn :NERDTreeToggle<cr>
-map <leader>nr :NERDTreeRefreshRoot<cr>
-map <leader>nf :NERDTreeFind<cr>
+map <leader>e :NERDTreeToggle<cr>
+map <leader>E :NERDTreeFind<cr>
+
+" Surround remaps
+nmap gzd <Plug>DSurround
+nmap gzr <Plug>CSurround
+nmap gza <Plug>YSurround
+vmap gzd <Plug>DSurround
 
 " Fzf config
 " Search files
@@ -230,6 +240,10 @@ nmap <Leader>sm :Marks<cr>
 nmap <Leader>: :Commands<cr>
 " Open Git in browser
 map <Leader>gb :GBrowse<cr>
+
+" Easy motion
+nmap s <Plug>(easymotion-f)
+nmap S <Plug>(easymotion-F)
 
 " Airline bar config
 let g:airline_powerline_fonts=1
