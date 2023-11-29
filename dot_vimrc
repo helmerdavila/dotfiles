@@ -32,12 +32,6 @@ Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'github/copilot.vim'
 Plug 'alker0/chezmoi.vim'
-
-" Themes
-Plug 'sainnhe/sonokai'
-Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'antoinemadec/coc-fzf'
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install() }}
 Plug 'jparise/vim-graphql'
@@ -45,6 +39,12 @@ Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
+
+" Themes
+Plug 'sainnhe/sonokai'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " NERDTree file sidebar
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -112,6 +112,13 @@ set nowrap
 set path+=**
 set wildignore+=*/node_modules/*
 set iskeyword-=_
+" Set leader to space
+nnoremap <Space> <Nop>
+let mapleader=" "
+" Split mapping
+set splitbelow
+set splitright
+
 
 if !exists('g:syntax_on')
 	syntax enable
@@ -136,24 +143,17 @@ endif
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
-noremap <space> :
-
 " Quick save
 nmap <leader>w :w!<cr>
 
 " Open terminal
-nmap <leader>t :term<cr>
-nmap <leader>y :vert term<cr>
+nmap <leader>ft :term<cr>
 
 " Toggle relative numbers
-nmap <leader>n :set relativenumber!<cr>
+nmap <leader>uL :set rnu!<cr>
 
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>9 :source ~/.vimrc<CR>
-
-" Split mapping
-set splitbelow
-set splitright
 
 " Movement maps
 map <C-j> <C-W>j
@@ -162,12 +162,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Tab maps
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+map <leader><tab>x :tabclose<cr>
 
 " Double jj for Esc
 imap jj <Esc>
@@ -202,8 +197,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
 nmap <leader>r <Plug>(coc-rename)
 
 nnoremap <leader>e :CocFzfList outline<cr>
@@ -212,9 +207,9 @@ nnoremap <leader>e :CocFzfList outline<cr>
 " Nerd show hidden files
 let NERDTreeShowHidden = 1
 let NERDTreeQuitOnOpen = 0
-let NERDTreeMapOpenInTab = '<leader>1'
-let NERDTreeMapOpenVSplit = '<leader>2'
-let NERDTreeMapOpenSplit = '<leader>3'
+let NERDTreeMapOpenInTab = 't'
+let NERDTreeMapOpenVSplit = 'S'
+let NERDTreeMapOpenSplit = 's'
 
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nr :NERDTreeRefreshRoot<cr>
@@ -222,17 +217,17 @@ map <leader>nf :NERDTreeFind<cr>
 
 " Fzf config
 " Search files
-map <leader>o :Files<cr>
+map <leader>ff :Files<cr>
 " Change between buffers
-nmap <leader>q :Buffers<cr>
+nmap <leader>, :Buffers<cr>
 " Search text in all files
-map <leader>p :Ag<cr>
+map <leader>/ :Ag<cr>
 " Search in file
-map <Leader>f :BLines<cr>
+map <Leader>sb :BLines<cr>
 " Search in marks
-nmap <Leader>m :Marks<cr>
+nmap <Leader>sm :Marks<cr>
 " Search in all commands
-nmap <Leader>a :Commands<cr>
+nmap <Leader>: :Commands<cr>
 " Open Git in browser
 map <Leader>gb :GBrowse<cr>
 
