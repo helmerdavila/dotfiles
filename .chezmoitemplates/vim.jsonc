@@ -107,9 +107,25 @@
     {
       "before": ["d", "s", "<space>"],
       "after": ["F", "<space>", "x", "f", "<space>", "x"]
+    },
+    {
+      "before": ["g", "z", "d"],
+      "after": ["d", "s"]
+    },
+    {
+      "before": ["g", "z", "r"],
+      "after": ["c", "s"]
+    },
+    {
+      "before": ["g", "z", "a"],
+      "after": ["y", "s"]
     }
   ],
   "vim.visualModeKeyBindings": [
+    {
+      "before": ["g", "z", "a"],
+      "after": ["S"]
+    },
     {
       "before": [">"],
       "commands": ["editor.action.indentLines"]
