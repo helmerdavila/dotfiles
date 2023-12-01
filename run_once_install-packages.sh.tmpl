@@ -313,7 +313,6 @@ if ! exist eza; then
 fi
 {{-   end }}
 {{- else if eq .chezmoi.os "darwin" }}
-install_volta
 
 if exist bat; then
   bat cache --build
