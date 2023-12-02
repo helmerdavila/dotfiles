@@ -3,3 +3,4 @@ git:
     colorArg: always
     pager: diff-so-fancy
 disableStartupPopups: true
+confirmOnQuit: true
