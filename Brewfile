@@ -16,7 +16,6 @@ cask "font-victor-mono-nerd-font"
 
 brew "awscli"
 brew "bat"
-brew "chezmoi"
 brew "cmatrix"
 brew "curl"
 brew "ctags"
