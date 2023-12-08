@@ -43,6 +43,7 @@
     type = "file"
     url = "https://cht.sh/:cht.sh"
     refreshPeriod = "300h"
+    executable = true
 [".config/bat/themes/Catppuccin-latte.tmTheme"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-latte.tmTheme"
