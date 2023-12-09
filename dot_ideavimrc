@@ -43,8 +43,8 @@ let mapleader=" "
 :map <leader>e :NERDTreeToggle<cr>
 :map <leader>E :NERDTreeFind<cr>
 :map <leader><tab>x :tabclose<cr>
-:map [b :bnext<cr>
-:map ]b :bprevious<cr>
+:map [b :tabnext<cr>
+:map ]b :tabprevious<cr>
 :map <leader>sm <Action>(ShowBookmarks)
 :nmap <leader>mm <Action>(ToggleBookmark)
 :nmap s <Plug>(easymotion-f)
