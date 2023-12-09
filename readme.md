@@ -8,6 +8,20 @@ A group of dotfiles for my daily development
 
 - Version: Ventura or greater
 
+You need to install Homebrew and Chezmoi first
+
+#### Install Homebrew
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+#### Install chezmoi
+
+```bash
+brew install chezmoi
+```
+
 ### Ubuntu
 
 - Version: 22.04 or greater
@@ -18,7 +32,7 @@ A group of dotfiles for my daily development
 
 ## Steps
 
-### Get chezmoi and install this config
+### Get chezmoi (except for macOS, use Brew) and install this config
 
 ```bash
 sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
