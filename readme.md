@@ -35,7 +35,12 @@ brew install chezmoi
 ### Get chezmoi (except for macOS, use Brew) and install this config
 
 ```bash
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
+sh -c "$(curl -fsLS chezmoi.io/get)" -- init --ssh --apply helmerdavila
+```
+
+```bash
+# Only for macOS
+chezmoi init --ssh --apply helmerdavila
 ```
 
 ## What's installing?
@@ -61,38 +66,7 @@ sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply helmerdavila
 
 ## Creating an ~/.nvimrc (Custom Neovim) and ~/.ovimrc (Custom Original Vim)
 
-Chezmoi will create both files when you start it the first time. Make sure the content is nearly similar to the next file contents
-
-### ~/.nvimrc
-
-```vim
-set guifont=CodeNewRomanNerdFontCompleteM-:h18
-"set guifont=JetBrainsMonoNerdFontCompleteM-Regular:h18
-"set guifont=FiraCodeNerdFontCompleteM-Retina:h18
-
-" You can change the following between dark or light
-set background=light
-
-" Theme: OneHalfLight (Default | Light theme)
-colorscheme onehalflight
-
-" Theme: OneDark (Dark theme)
-" let g:onedark_config = { 'style': 'cool' }
-" colorscheme onedark
-
-" Theme: Nightfly (Dark Theme)
-" colorscheme nightfly
-
-" Replace the theme of vim bar (lualine)
-lua <<END
-require('lualine').setup {
-  options = { theme = 'onelight' }
-}
-END
-
-" Share clipboard with system (Mac)
-set clipboard=unnamed
-```
+Chezmoi will create the file when you start it the first time. Make sure the content is nearly similar to the next file contents
 
 ### ~/.ovimrc
 
