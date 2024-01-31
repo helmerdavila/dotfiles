@@ -1,6 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
 git:
   paging:
     colorArg: always
     pager: diff-so-fancy
+gui:
+  theme:
+    selectedLineBgColor:
+      - "reverse"
+  nerdFontsVersion: "3"
+  border: "rounded"
 disableStartupPopups: true
 confirmOnQuit: true
