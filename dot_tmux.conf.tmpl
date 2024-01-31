@@ -77,6 +77,9 @@ set -g @plugin "tmux-plugins/tmux-yank"
 set -g @plugin "christoomey/vim-tmux-navigator"
 set -g @plugin 'erikw/tmux-powerline'
 
+# TPM Binding
+set -g @tpm-clean 'u'
+
 # TPM Config
 if "test ! -d ~/.tmux/plugins/tpm" \
    "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
