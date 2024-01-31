@@ -19,6 +19,7 @@ brew "bat"
 brew "cmatrix"
 brew "curl"
 brew "ctags"
+brew "cmake" # Required for tmux plugins
 brew "diff-so-fancy"
 brew "eza"
 brew "fd"
