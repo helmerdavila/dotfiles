@@ -12,7 +12,6 @@ call plug#begin()
 Plug 'APZelos/blamer.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'digitaltoad/vim-pug'
-Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'jxnblk/vim-mdx-js'
@@ -41,23 +40,28 @@ Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
 
 " Themes
+Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'sainnhe/sonokai'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
 " NERDTree file sidebar
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
 " Icons for NERDTree
 Plug 'ryanoasis/vim-devicons'
+
 " FZF, file and text search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 " Airline Bar + Themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Theme Catpuccin
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
 " Git
 Plug 'mhinz/vim-signify'
 
@@ -69,25 +73,6 @@ if &term =~ '256color'
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
-
-" Imports "{{{
-" ---------------------------------------------------------------------
-if has("gui_running")
-  " Gvim
-  if has("gui_gtk2") || has("gui_gtk3")
-    " Linux GUI
-  elseif has("gui_win32")
-    " Win32/64 GVim
-  elseif has("gui_macvim")
-    set macligatures
-  else
-    echo "Unknown GUI system!!!!"
-  endif
-else
-  " Terminal vim
-endif
-"}}}
-
 
 filetype plugin indent on
 set autoread                    "Reload files changed outside vim
