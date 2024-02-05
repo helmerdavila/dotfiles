@@ -2,7 +2,7 @@
 # If changes made here does not take effect, then try to re-create the tmux session to force reload.
 
 export TMUX_POWERLINE_SEG_TMUX_SESSION_INFO_FORMAT=" #S"
-export TMUX_POWERLINE_SEG_DATE_FORMAT="%d-%m-%Y"
+export TMUX_POWERLINE_SEG_DATE_FORMAT=" %a %d-%m-%Y"
 
 if patched_font_in_use; then
 	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD=""
@@ -105,15 +105,15 @@ if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 		#"now_playing 234 37"
 		#"cpu 240 136"
 		#"load 237 167"
-		"tmux_mem_cpu_load black white"
+		"tmux_mem_cpu_load lightblue black"
 		#"battery brightyellow black"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
 		#"weather 37 255"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}" \
 		#"xkb_layout 125 117" \
-		"date_day #cfb5ff black"
-		"date #cfb5ff black ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"time #cfb5ff black ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
+		#"date_day #cfb5ff black"
+		"date #cfb5ff black"
+		#"time #cfb5ff black ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 	)
 fi
