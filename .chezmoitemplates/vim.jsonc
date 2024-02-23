@@ -78,6 +78,14 @@
       "before": ["]", "g"],
       "commands": ["editor.action.marker.next"]
     },
+    {
+      "before": ["H"],
+      "commands": [":tabprev"]
+    },
+    {
+      "before": ["L"],
+      "commands": [":tabnext"]
+    },
 
     // Editing and Refactoring
     {
