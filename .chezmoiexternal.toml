@@ -47,11 +47,11 @@
     executable = true
 [".config/bat/themes/Catppuccin-latte.tmTheme"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-latte.tmTheme"
+    url = "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Latte.tmTheme"
     refreshPeriod = "300h"
 [".config/bat/themes/Catppuccin-frappe.tmTheme"]
     type = "file"
-    url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-frappe.tmTheme"
+    url = "https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Frappe.tmTheme"
     refreshPeriod = "300h"
 {{- if (eq .chezmoi.os "linux") }}
 {{-   if (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "linuxmint")) }}
