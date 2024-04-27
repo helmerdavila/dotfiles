@@ -66,4 +66,5 @@
     type = "archive"
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     refreshPeriod = "48h"
+    stripComponents = 1
 {{- end }}
