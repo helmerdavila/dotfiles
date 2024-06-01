@@ -3,6 +3,11 @@ git:
   paging:
     colorArg: always
     pager: diff-so-fancy
+  # Uncomment the following line to enable commitPrefixes
+  # commitPrefixes:
+  #   pills:
+  #     pattern: "^(PILL-\\d+)-.*"
+  #     replace: "$1: "
 gui:
   theme:
     selectedLineBgColor:
