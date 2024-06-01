@@ -51,6 +51,14 @@
       "before": ["<leader>", ":"],
       "commands": ["workbench.action.showCommands"]
     },
+    {
+      "before": ["<C-[>"],
+      "commands": ["editor.action.fontZoomOut"]
+    },
+    {
+      "before": ["<C-]>"],
+      "commands": ["editor.action.fontZoomIn"]
+    },
     // Toggle editor settings
     {
       "before": ["<leader>", "u", "L"],

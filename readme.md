@@ -114,6 +114,8 @@ set clipboard=unnamed
 | `<leader> + <tab> + x` | Tab: Close | Normal |
 | `<leader> + q + q` | Window: Close | Normal |
 | `<leader> + :` | Execute / Search Command | Normal |
+| `<C-[>` | Font Size: Decrease | Normal |
+| `<C-]>` | Font Size: Increase | Normal |
 | `<leader> + u + L` | Toggle relative line numbers | Normal |
 | `<leader> + u + w` | Toggle wrap | Normal |
 | `<leader> + z` | Toggle Zen mode | Normal |
