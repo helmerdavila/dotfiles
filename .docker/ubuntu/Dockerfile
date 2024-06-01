@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 # tzdata fix for Docker
 ARG DEBIAN_FRONTEND=noninteractive
