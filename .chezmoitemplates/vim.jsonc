@@ -1,3 +1,5 @@
+{
+  // Start coping after this line
   "vim.easymotion": true,
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
@@ -5,46 +7,21 @@
   "vim.surround": true,
   "vim.useSystemClipboard": true,
   "vim.insertModeKeyBindings": [
+    // Editor shortcuts
     {
       "before": ["j", "j"],
       "after": ["<Esc>"]
     }
   ],
   "vim.normalModeKeyBindings": [
-    // File and Workspace Operations
+    // Editor shortcuts
     {
-      "before": ["<leader>", "w"],
-      "commands": ["workbench.action.files.save"]
+      "before": ["<leader>", "-"],
+      "commands": ["workbench.action.splitEditor"]
     },
     {
-      "before": ["<leader>", "s", "s"],
-      "commands": ["workbench.action.files.gotoSymbol"]
-    },
-    {
-      "before": ["<leader>", "f", "f"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["<leader>", "f", "t"],
-      "commands": ["workbench.action.quickOpenTerm"]
-    },
-    {
-      "before": ["<leader>", "/"],
-      "commands": ["workbench.action.findInFiles"]
-    },
-    {
-      "before": ["<leader>", ":"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "before": ["<leader>", "z"],
-      "commands": ["workbench.action.toggleZenMode"]
-    },
-
-    // Navigation and Window Management
-    {
-      "before": ["<leader>", ","],
-      "commands": ["workbench.action.quickOpenPreviousEditor"]
+      "before": ["<leader>", "|"],
+      "commands": ["workbench.action.splitEditorDown"]
     },
     {
       "before": ["<C-k>"],
@@ -67,16 +44,34 @@
       "commands": [":tabclose"]
     },
     {
-      "before": ["[", "g"],
-      "commands": ["editor.action.marker.prev"]
+      "before": ["<leader>", "q", "q"],
+      "commands": ["workbench.action.closeWindow"]
     },
     {
-      "before": ["<leader>", "f", "t"],
-      "commands": ["terminal.open"]
+      "before": ["<leader>", ":"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    // Toggle editor settings
+    {
+      "before": ["<leader>", "u", "L"],
+      "commands": [":set rnu!"]
     },
     {
-      "before": ["]", "g"],
-      "commands": ["editor.action.marker.next"]
+      "before": ["<leader>", "u", "w"],
+      "commands": ["editor.action.toggleWordWrap"]
+    },
+    {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    // File navigation
+    {
+      "before": ["[", "b"],
+      "commands": [":tabprev"]
+    },
+    {
+      "before": ["]", "b"],
+      "commands": [":tabnext"]
     },
     {
       "before": ["H"],
@@ -86,35 +81,38 @@
       "before": ["L"],
       "commands": [":tabnext"]
     },
-
-    // Editing and Refactoring
     {
-      "before": ["s"],
-      "after": ["<leader>", "<leader>", "2", "f"]
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": ["S"],
-      "after": ["<leader>", "<leader>", "2", "F"]
+      "before": ["<leader>", ","],
+      "commands": ["workbench.action.quickOpenPreviousEditor"]
+    },
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "s", "S"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    // Same file: actions
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "c", "f"],
+      "commands": ["editor.action.formatDocument"]
     },
     {
       "before": ["<leader>", "c", "r"],
       "commands": ["editor.action.rename"]
     },
     {
-      "before": ["<leader>", "s", "b"],
-      "commands": ["actions.find"]
-    },
-    {
       "before": ["<leader>", "m", "m"],
       "commands": ["bookmarks.toggle"]
-    },
-    {
-      "before": ["<leader>", "s", "m"],
-      "commands": ["bookmarks.listFromAllFiles"]
-    },
-    {
-      "before": ["d", "s", "<space>"],
-      "after": ["F", "<space>", "x", "f", "<space>", "x"]
     },
     {
       "before": ["g", "z", "d"],
@@ -127,6 +125,45 @@
     {
       "before": ["g", "z", "a"],
       "after": ["y", "s"]
+    },
+    // Same file: Navigation
+    {
+      "before": ["<leader>", "s", "b"],
+      "commands": ["actions.find"]
+    },
+    {
+      "before": ["<leader>", "s", "s"],
+      "commands": ["workbench.action.files.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "s", "m"],
+      "commands": ["bookmarks.listFromAllFiles"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["s"],
+      "after": ["<leader>", "<leader>", "2", "f"]
+    },
+    {
+      "before": ["S"],
+      "after": ["<leader>", "<leader>", "2", "F"]
+    },
+    // File explorer
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    // Terminal
+    {
+      "before": ["<leader>", "f", "t"],
+      "commands": ["workbench.action.quickOpenTerm"]
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -142,4 +179,6 @@
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
     }
-  ],
+  ]
+  // Stop coping before this line
+}

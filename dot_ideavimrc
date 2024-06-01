@@ -9,13 +9,6 @@ set highlightedyank
 set iskeyword-=_
 set easymotion
 
-""" Plugin settings -------------------------
-let g:argtextobj_pairs="[:],(:),<:>"
-let g:surround_no_mappings=1
-let g:NERDTreeMapActivateNode='<cr>'
-let g:NERDTreeMapOpenVSplit="s"
-let g:NERDTreeMapOpenSplit="S"
-
 """ Common settings -------------------------
 set showmode
 set so=5
@@ -25,49 +18,71 @@ set relativenumber
 """ remap leader key to space
 let mapleader=" "
 
-""" Windows settings ------------------------
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:surround_no_mappings=1
+let g:NERDTreeMapActivateNode='<cr>'
+let g:NERDTreeMapOpenVSplit="s"
+let g:NERDTreeMapOpenSplit="S"
+
+""" Editor shortcuts
+:imap jj <Esc>
 :map <leader>- :split<cr>
 :map <leader>\| :vsplit<cr>
-:map <C-j> <C-W>j
 :map <C-k> <C-W>k
+:map <C-j> <C-W>j
 :map <C-h> <C-W>h
 :map <C-l> <C-W>l
-
-
-""" File navigation -------------------------
-:map <leader>ff <Action>(GotoFile)
-:map <leader>ss <Action>(FileStructurePopup)
-:map <leader>sS <Action>(GotoSymbol)
-:map <leader>, <Action>(RecentFiles)
-:map <leader>/ <Action>(FindInPath)
-:map <leader>e :NERDTreeToggle<cr>
-:map <leader>E :NERDTreeFind<cr>
 :map <leader><tab>x :tabclose<cr>
+:nmap <leader>qq <Action>(Exit)
+:map <leader>: <Action>(GotoAction)
+
+""" Toggle editor settings
+:map <leader>uL :set relativenumber!<cr>
+:map <leader>uw <Action>(EditorToggleUseSoftWraps)
+:map <leader>z <Action>(ToggleDistractionFreeMode)
+
+""" File navigation
 :nmap [b :tabprevious<cr>
 :nmap ]b :tabnext<cr>
 :nmap H :tabprevious<cr>
 :nmap L :tabnext<cr>
-:map <leader>sm <Action>(ShowBookmarks)
-:nmap <leader>mm <Action>(ToggleBookmark)
-:nmap s <Plug>(easymotion-f)
-:nmap S <Plug>(easymotion-F)
+:map <leader>ff <Action>(GotoFile)
+:map <leader>, <Action>(RecentFiles)
+:map <leader>/ <Action>(FindInPath)
+:map <leader>sS <Action>(GotoSymbol)
 
-""" Code actions ----------------------------
+""" Same file: Actions
+:map <leader>w :w<cr>
 :map <leader>cf <Action>(ReformatCode)
 :map <leader>cr <Action>(RenameElement)
-:map [e <Action>(GotoPreviousError)
-:map ]e <Action>(GotoNextError)
+:nmap <leader>mm <Action>(ToggleBookmark)
 :nmap gzd <Plug>DSurround
 :nmap gzr <Plug>CSurround
 :nmap gza <Plug>YSurround
 :vmap gza <Plug>VSurround
 
-""" Offtopic --------------------------------
-:map <leader>z <Action>(ToggleDistractionFreeMode)
-:map <leader>w :w<cr>
-:map <leader>: <Action>(GotoAction)
-:map <leader>uL :set relativenumber!<cr>
-:map <leader>uw <Action>(EditorToggleUseSoftWraps)
-:nmap <leader>qq <Action>(Exit)
-imap jj <Esc>
+""" Same file: Navigation
+:map <leader>sb <Action>(Find)
+:map <leader>ss <Action>(FileStructurePopup)
+:map <leader>sm <Action>(ShowBookmarks)
+:map [e <Action>(GotoPreviousError)
+:map ]e <Action>(GotoNextError)
+:nmap s <Plug>(easymotion-f)
+:nmap S <Plug>(easymotion-F)
+
+""" File explorer
+:map <leader>e :NERDTreeToggle<cr>
+
+""" Terminal
+:map <leader>ft <Action>(ActivateTerminalToolWindow)
+
+""" TODO: Toggle auto format on save
+""" TODO: use lazygit shortcut to open git
+""" TODO: add increase and decrease font size
+""" TODO: Add commands to run tests
+
+
+
+
 
