@@ -116,6 +116,7 @@ set clipboard=unnamed
 | `<leader> + :` | Execute / Search Command | Normal |
 | `<C-[>` | Font Size: Decrease | Normal |
 | `<C-]>` | Font Size: Increase | Normal |
+| `<leader> + g + g` | Git: Focus | Normal |
 | `<leader> + u + L` | Toggle relative line numbers | Normal |
 | `<leader> + u + w` | Toggle wrap | Normal |
 | `<leader> + z` | Toggle Zen mode | Normal |

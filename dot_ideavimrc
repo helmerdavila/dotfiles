@@ -38,6 +38,7 @@ let g:NERDTreeMapOpenSplit="S"
 :map <leader>: <Action>(GotoAction)
 :map <C-[> <Action>(EditorDecreaseFontSizeGlobal)
 :map <C-]> <Action>(EditorIncreaseFontSizeGlobal)
+:map <leader>gg <Action>(ActivateCommitToolWindow)
 
 """ Toggle editor settings
 :map <leader>uL :set relativenumber!<cr>
@@ -79,6 +80,5 @@ let g:NERDTreeMapOpenSplit="S"
 """ Terminal
 :map <leader>ft <Action>(ActivateTerminalToolWindow)
 
-""" TODO: use lazygit shortcut to open git
 """ TODO: Add command to increase focus on Window (leader + wm / m)
 """ TODO: Add commands to run tests
