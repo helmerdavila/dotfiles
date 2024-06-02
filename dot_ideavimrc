@@ -80,5 +80,8 @@ let g:NERDTreeMapOpenSplit="S"
 """ Terminal
 :map <leader>ft <Action>(ActivateTerminalToolWindow)
 
-""" TODO: Add command to increase focus on Window (leader + wm / m)
-""" TODO: Add commands to run tests
+""" Test actions
+:map <leader>tr <Action>(ContextRun)
+:map <leader>tl <Action>(Run)
+:map <leader>tc <Action>(Coverage)
+:map <leader>db <Action>(ToggleLineBreakpoint)

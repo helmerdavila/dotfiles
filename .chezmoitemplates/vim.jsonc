@@ -180,6 +180,23 @@
     {
       "before": ["<leader>", "f", "t"],
       "commands": ["workbench.action.quickOpenTerm"]
+    },
+    // Testing
+    {
+      "before": ["<leader>", "t", "r"],
+      "commands": ["testing.runAtCursor"]
+    },
+    {
+      "before": ["<leader>", "t", "l"],
+      "commands": ["testing.reRunLastRun"]
+    },
+    {
+      "before": ["<leader>", "t", "c"],
+      "commands": ["testing.coverageLastRun"]
+    },
+    {
+      "before": ["<leader>", "d", "b"],
+      "commands": ["editor.debug.action.toggleBreakpoint"]
     }
   ],
   "vim.visualModeKeyBindings": [

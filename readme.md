@@ -145,3 +145,7 @@ set clipboard=unnamed
 | `S + 2 letters` | Move to previous word beginning with | Normal |
 | `<leader> + e` | Toggle File Explorer | Normal |
 | `<leader> + f + t` | Terminal: Open | Normal |
+| `<leader> + t + r` | Test: Run nearest | Normal |
+| `<leader> + t + l` | Test: Run last | Normal |
+| `<leader> + t + c` | Test: Coverage last | Normal |
+| `<leader> + d + b` | Breakpoint: Toggle | Normal |
