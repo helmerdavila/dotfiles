@@ -1,5 +1,6 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.coding.copilot",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.editor.leap",
@@ -7,12 +8,11 @@
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.tailwind",
-    "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.linting.eslint"
   ],
   "news": {
-    "NEWS.md": "2123"
+    "NEWS.md": "4964"
   },
-  "version": 2
+  "version": 6
 }
