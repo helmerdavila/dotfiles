@@ -107,6 +107,10 @@
     },
     // Same file: actions
     {
+      "before": ["<leader>", "W"],
+      "commands": ["workbench.action.files.saveWithoutFormatting"]
+    },
+    {
       "before": ["<leader>", "w"],
       "commands": ["workbench.action.files.save"]
     },

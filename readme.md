@@ -127,6 +127,7 @@ set clipboard=unnamed
 | `<leader> + ,` | Recent files | Normal |
 | `<leader> + /` | Search everywhere (Text) | Normal |
 | `<leader> + w` | Save the file | Normal |
+| `<leader> + W` | Save: No format (Vscode) | Normal |
 | `<leader> + s + S` | Go to symbol (Workspace) | Normal |
 | `<leader> + c + f` | Reformat the file | Normal |
 | `<leader> + c + r` | Rename element | Normal |

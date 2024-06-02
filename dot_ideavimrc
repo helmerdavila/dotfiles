@@ -79,12 +79,6 @@ let g:NERDTreeMapOpenSplit="S"
 """ Terminal
 :map <leader>ft <Action>(ActivateTerminalToolWindow)
 
-""" TODO: Toggle auto format on save
 """ TODO: use lazygit shortcut to open git
 """ TODO: Add command to increase focus on Window (leader + wm / m)
 """ TODO: Add commands to run tests
-
-
-
-
-
