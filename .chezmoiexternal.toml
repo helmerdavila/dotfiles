@@ -4,7 +4,6 @@
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
     exact = true
     stripComponents = 1
-    refreshPeriod = "48h"
 [".oh-my-zsh/custom/plugins/fast-syntax-highlighting"]
     type = "archive"
     url = "https://github.com/zdharma-continuum/fast-syntax-highlighting/archive/master.tar.gz"
@@ -58,7 +57,7 @@
 # Neovim will be build from this directory
 [".neovim"]
     type = "archive"
-    url = "https://github.com/neovim/neovim/archive/v0.9.4.tar.gz"
+    url = "https://github.com/neovim/neovim/archive/v0.9.5.tar.gz"
     refreshPeriod = "1000h"
     stripComponents = 1
 {{-   end }}
