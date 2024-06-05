@@ -82,6 +82,9 @@ symbol = " "
 [spack]
 symbol = "🅢 "
 
+[status]
+disabled = false
+
 [terraform]
 format = '[💠 $version - $workspace]($style) '
 
