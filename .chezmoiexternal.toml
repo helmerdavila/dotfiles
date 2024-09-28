@@ -57,7 +57,7 @@
 # Neovim will be build from this directory
 [".neovim"]
     type = "archive"
-    url = "https://github.com/neovim/neovim/archive/v0.9.5.tar.gz"
+    url = "https://github.com/neovim/neovim/archive/v0.10.1.tar.gz"
     refreshPeriod = "1000h"
     stripComponents = 1
 {{-   end }}
