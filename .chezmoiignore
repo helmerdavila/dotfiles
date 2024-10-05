@@ -2,3 +2,8 @@ readme.md
 .gitignore
 docker-compose.yml
 /.docker
+
+# ignore oh-my-zsh cache
+.oh-my-zsh/cache/.zsh-update
+.oh-my-zsh/cache/completions/
+.oh-my-zsh/cache/grep-alias/
