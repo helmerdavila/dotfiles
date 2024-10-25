@@ -7,3 +7,5 @@ docker-compose.yml
 .oh-my-zsh/cache/.zsh-update
 .oh-my-zsh/cache/completions/
 .oh-my-zsh/cache/grep-alias/
+.oh-my-zsh/cache/composer
+.oh-my-zsh/plugins/aliases
