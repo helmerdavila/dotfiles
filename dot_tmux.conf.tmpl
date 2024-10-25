@@ -75,7 +75,13 @@ set -g @plugin "tmux-plugins/tmux-resurrect"
 set -g @plugin "tmux-plugins/tmux-continuum"
 set -g @plugin "tmux-plugins/tmux-yank"
 set -g @plugin "christoomey/vim-tmux-navigator"
+{{- if eq .chezmoi.osRelease.id "fedora" }}
+set -g @plugin "rose-pine/tmux"
+
+set -g @rose_pine_variant "main"
+{{- else }}
 set -g @plugin "catppuccin/tmux"
+{{- end }}
 
 # TPM Binding
 set -g @tpm-clean 'u'
