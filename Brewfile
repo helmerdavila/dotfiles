@@ -1,8 +1,5 @@
 tap "adoptopenjdk/openjdk"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "ngrok/ngrok"
 tap "warrensbox/tap"
