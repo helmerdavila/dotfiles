@@ -80,7 +80,10 @@ set -g @plugin "rose-pine/tmux"
 
 set -g @rose_pine_variant "main"
 {{- else }}
-set -g @plugin "catppuccin/tmux"
+# This requires the latest version of bash `brew install bash`
+set -g @plugin "fabioluciano/tmux-tokyo-night"
+
+set -g @theme_transparent_status_bar 'true'
 {{- end }}
 
 # TPM Binding
