@@ -135,6 +135,9 @@ set -gF window-status-separator "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}]│"
 set -g window-status-current-format " #I#{?#{!=:#{window_name},Window},: #W,} "
 set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
 
+# Enable Tmux Continuum
+set -g @continuum-restore "on"
+
 # TPM Binding
 set -g @tpm-clean 'u'
 
