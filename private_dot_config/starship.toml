@@ -1,3 +1,45 @@
+command_timeout = 1000
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false 
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$line_break\
+$character
+"""
+
+right_format = """$all"""
+
+[directory]
+format = "[ $path ]($style)"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Dev" = "󰲋 "
+
+[git_branch]
+symbol = "[](black) "
+format =  ' on [$symbol$branch]($style)[](black)'
+
+[git_status]
+format = ' [($all_status$ahead_behind )]($style)'
+
+[time]
+disabled = true
+
+[line_break]
+disabled = true
+
+# Extra icons
 [aws]
 symbol = "  "
 
@@ -13,9 +55,6 @@ symbol = " "
 [dart]
 symbol = " "
 
-[directory]
-read_only = " "
-
 [docker_context]
 symbol = " "
 
@@ -24,9 +63,6 @@ symbol = " "
 
 [elm]
 symbol = " "
-
-[git_branch]
-symbol = " "
 
 [golang]
 symbol = " "
@@ -61,9 +97,6 @@ symbol = " "
 [nodejs]
 symbol = " "
 
-[package]
-symbol = " "
-
 [python]
 symbol = " "
 
@@ -82,11 +115,5 @@ symbol = " "
 [spack]
 symbol = "🅢 "
 
-[status]
-disabled = false
-
 [terraform]
 format = '[💠 $version - $workspace]($style) '
-
-[battery]
-disabled = true
