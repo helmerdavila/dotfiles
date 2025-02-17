@@ -54,6 +54,9 @@ let g:NERDTreeMapOpenSplit="S"
 :map <leader>, <Action>(RecentFiles)
 :map <leader>/ <Action>(FindInPath)
 :map <leader>sS <Action>(GotoSymbol)
+:map <leader>s" <Action>(PasteMultiple)
+:map <leader>gI <Action>(ShowUsages)
+:map <leader>gB <Action>(Github.Open.In.Browser)
 
 """ Same file: Actions
 :map <leader>w :w<cr>
@@ -84,4 +87,5 @@ let g:NERDTreeMapOpenSplit="S"
 :map <leader>tr <Action>(ContextRun)
 :map <leader>tl <Action>(Run)
 :map <leader>tc <Action>(Coverage)
+:map <leader>td <Action>(ContextDebug)
 :map <leader>db <Action>(ToggleLineBreakpoint)
