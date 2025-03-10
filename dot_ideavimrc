@@ -55,8 +55,8 @@ let g:NERDTreeMapOpenSplit="S"
 :map <leader>/ <Action>(FindInPath)
 :map <leader>sS <Action>(GotoSymbol)
 :map <leader>s" <Action>(PasteMultiple)
-:map <leader>gI <Action>(ShowUsages)
-:map <leader>gB <Action>(Github.Open.In.Browser)
+:map gI <Action>(ShowUsages)
+:map gB <Action>(Github.Open.In.Browser)
 
 """ Same file: Actions
 :map <leader>w :w<cr>
