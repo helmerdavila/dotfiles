@@ -1,23 +1,8 @@
-command_timeout = 1000
+command_timeout = 5000
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = false 
-
-format = """
-$username\
-$directory\
-$git_branch\
-$git_state\
-$git_status\
-$line_break\
-$character
-"""
-
-right_format = """$all"""
-
-[directory]
-format = "[ $path ]($style)"
+add_newline = false
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -28,7 +13,7 @@ format = "[ $path ]($style)"
 
 [git_branch]
 symbol = " "
-format =  ' on [$symbol$branch]($style)'
+format = ' on [$symbol$branch]($style)'
 
 [git_status]
 format = ' [($all_status$ahead_behind )]($style)'
